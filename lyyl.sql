@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2018 �?04 �?23 �?09:45
+-- 生成日期: 2018 �?04 �?24 �?15:13
 -- 服务器版本: 5.5.53
--- PHP 版本: 7.0.12
+-- PHP 版本: 5.5.38
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -620,14 +620,28 @@ CREATE TABLE IF NOT EXISTS `yl_nav_menu` (
   `icon` varchar(20) NOT NULL DEFAULT '' COMMENT '图标',
   `path` varchar(255) NOT NULL DEFAULT '' COMMENT '层级关系',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COMMENT='前台导航菜单表' AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COMMENT='前台导航菜单表' AUTO_INCREMENT=16 ;
 
 --
 -- 转存表中的数据 `yl_nav_menu`
 --
 
 INSERT INTO `yl_nav_menu` (`id`, `nav_id`, `parent_id`, `status`, `list_order`, `name`, `target`, `href`, `icon`, `path`) VALUES
-(1, 1, 0, 1, 0, '首页', '', 'home', '', '0-1');
+(1, 1, 0, 1, 0, '首页', '', 'home', '', '0-1'),
+(2, 1, 0, 1, 10000, '门诊科室', '', '{"action":"portal\\/List\\/index","param":{"id":1}}', '', ''),
+(3, 1, 0, 1, 10000, '医疗特色', '', '{"action":"portal\\/Page\\/index","param":{"id":1}}', '', ''),
+(4, 1, 0, 1, 10000, '医院简介', '', '{"action":"portal\\/Page\\/index","param":{"id":2}}', '', ''),
+(5, 1, 0, 1, 10000, '医师团队', '', '{"action":"portal\\/List\\/index","param":{"id":2}}', '', ''),
+(6, 1, 0, 1, 10000, '新闻动态', '', '{"action":"portal\\/List\\/index","param":{"id":3}}', '', ''),
+(7, 1, 0, 1, 10000, '联系我们', '', '{"action":"portal\\/Page\\/index","param":{"id":3}}', '', ''),
+(8, 1, 2, 1, 10000, '非手术科', '', '{"action":"portal\\/List\\/index","param":{"id":4}}', '', ''),
+(9, 1, 2, 1, 10000, '手术科室', '', '{"action":"portal\\/List\\/index","param":{"id":5}}', '', ''),
+(10, 1, 2, 1, 10000, '诊断科室', '', '{"action":"portal\\/List\\/index","param":{"id":6}}', '', ''),
+(11, 1, 2, 1, 10000, '其他科室', '', '{"action":"portal\\/List\\/index","param":{"id":7}}', '', ''),
+(12, 1, 4, 1, 10000, '企业文化', '', '{"action":"portal\\/Page\\/index","param":{"id":4}}', '', ''),
+(13, 1, 4, 1, 10000, '发展历程', '', '{"action":"portal\\/Page\\/index","param":{"id":5}}', '', ''),
+(14, 1, 6, 1, 10000, '院内新闻', '', '{"action":"portal\\/List\\/index","param":{"id":8}}', '', ''),
+(15, 1, 6, 1, 10000, '行业新闻', '', '{"action":"portal\\/List\\/index","param":{"id":9}}', '', '');
 
 -- --------------------------------------------------------
 
@@ -705,7 +719,22 @@ CREATE TABLE IF NOT EXISTS `yl_portal_category` (
   `one_tpl` varchar(50) NOT NULL DEFAULT '' COMMENT '分类文章页模板',
   `more` text COMMENT '扩展属性',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='portal应用 文章分类表' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COMMENT='portal应用 文章分类表' AUTO_INCREMENT=10 ;
+
+--
+-- 转存表中的数据 `yl_portal_category`
+--
+
+INSERT INTO `yl_portal_category` (`id`, `parent_id`, `post_count`, `status`, `delete_time`, `list_order`, `name`, `description`, `path`, `seo_title`, `seo_keywords`, `seo_description`, `list_tpl`, `one_tpl`, `more`) VALUES
+(1, 0, 0, 1, 0, 10000, '门诊科室', '', '0-1-7', '', '', '', 'list_mz', 'article_mz', '{"thumbnail":"\\/style\\/images\\/case.jpg"}'),
+(2, 0, 0, 1, 0, 10000, '医师团队', '', '0-2', '', '', '', 'list_ys', 'article', '{"thumbnail":""}'),
+(3, 0, 0, 1, 0, 10000, '新闻动态', '', '0-3', '', '', '', 'list', 'article', '{"thumbnail":""}'),
+(4, 1, 0, 1, 0, 10000, '非手术科', '', '0-1-7-4', '', '', '', 'list_mz', 'article_mz', '{"thumbnail":"\\/style\\/images\\/case.jpg"}'),
+(5, 1, 0, 1, 0, 10000, '手术科室', '', '0-1-7-5', '', '', '', 'list_mz', 'article_mz', '{"thumbnail":"\\/style\\/images\\/case.jpg"}'),
+(6, 1, 0, 1, 0, 10000, '诊断科室', '', '0-1-7-6', '', '', '', 'list_mz', 'article_mz', '{"thumbnail":"\\/style\\/images\\/case.jpg"}'),
+(7, 1, 0, 1, 0, 10000, '其他科室', '', '0-1-7-7-7', '', '', '', 'list_mz', 'article_mz', '{"thumbnail":"\\/style\\/images\\/case.jpg"}'),
+(8, 3, 0, 1, 0, 10000, '院内新闻', '', '0-3-8', '', '', '', 'list', 'article', '{"thumbnail":""}'),
+(9, 3, 0, 1, 0, 10000, '行业新闻', '', '0-3-9', '', '', '', 'list', 'article', '{"thumbnail":""}');
 
 -- --------------------------------------------------------
 
@@ -721,7 +750,20 @@ CREATE TABLE IF NOT EXISTS `yl_portal_category_post` (
   `status` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '状态,1:发布;0:不发布',
   PRIMARY KEY (`id`),
   KEY `term_taxonomy_id` (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='portal应用 分类文章对应表' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='portal应用 分类文章对应表' AUTO_INCREMENT=8 ;
+
+--
+-- 转存表中的数据 `yl_portal_category_post`
+--
+
+INSERT INTO `yl_portal_category_post` (`id`, `post_id`, `category_id`, `list_order`, `status`) VALUES
+(1, 9, 4, 10000, 0),
+(2, 9, 6, 10000, 0),
+(3, 10, 5, 10000, 0),
+(4, 10, 7, 10000, 0),
+(5, 11, 1, 10000, 1),
+(6, 11, 5, 10000, 1),
+(7, 11, 7, 10000, 1);
 
 -- --------------------------------------------------------
 
@@ -758,7 +800,24 @@ CREATE TABLE IF NOT EXISTS `yl_portal_post` (
   KEY `parent_id` (`parent_id`),
   KEY `user_id` (`user_id`),
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='portal应用 文章表' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='portal应用 文章表' AUTO_INCREMENT=12 ;
+
+--
+-- 转存表中的数据 `yl_portal_post`
+--
+
+INSERT INTO `yl_portal_post` (`id`, `parent_id`, `post_type`, `post_format`, `user_id`, `post_status`, `comment_status`, `is_top`, `recommended`, `post_hits`, `post_like`, `comment_count`, `create_time`, `update_time`, `published_time`, `delete_time`, `post_title`, `post_keywords`, `post_excerpt`, `post_source`, `post_content`, `post_content_filtered`, `more`) VALUES
+(1, 0, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1524573768, 1524581041, 1524573720, 0, '医疗特色', '', '', '', NULL, NULL, '{"thumbnail":"","template":"page_yl"}'),
+(2, 0, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1524573797, 1524573808, 1524573780, 0, '医院简介', '', '', '', NULL, NULL, '{"thumbnail":"","template":"page"}'),
+(3, 0, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1524573855, 1524573860, 1524573840, 0, '联系我们', '', '', '', NULL, NULL, '{"thumbnail":"","template":"page"}'),
+(4, 0, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1524574031, 1524574042, 1524574020, 0, '企业文化', '', '', '', NULL, NULL, '{"thumbnail":"","template":"page"}'),
+(5, 0, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1524574055, 1524574062, 1524574020, 0, '发展历程', '', '', '', NULL, NULL, '{"thumbnail":"","template":"page"}'),
+(6, 0, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1524574128, 1524582404, 1524574080, 0, '新技术针疗法', '', '至于新三板，陈阳提到：我认同新三板今天所有的问题，在今天的纳斯达克依然存在。其实不足以讲这件事情的本质...', '', NULL, NULL, '{"thumbnail":"\\/style\\/picture\\/1-1f5041f041314.png","template":"page"}'),
+(7, 0, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1524574153, 1524582442, 1524574140, 0, '特色门诊', '', 'iOS/Android APP交互设计媒体的核心价值在于其内容，而在当今为内容付费的成功案例都稀缺的情况下，用户是绝对不会...', '', NULL, NULL, '{"thumbnail":"\\/style\\/picture\\/1-1f5041ap10-l.png","template":"page"}'),
+(8, 0, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1524574180, 1524582469, 1524574140, 0, '特需医疗', '', '01. 泛游戏兴趣聚合平台着迷将正式宣布其已完成 C 轮融资，由优酷土豆集团领投、掌趣科技跟投，具体的融资数额并...', '', '', NULL, '{"thumbnail":"\\/style\\/picture\\/1-1f5041aa20-l.png","template":"page"}'),
+(9, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1524578421, 1524578421, 1524578401, 1524580127, '医疗特色', '', '', '', '&lt;p&gt;搞的撒反对&lt;br&gt;&lt;/p&gt;', NULL, '{"thumbnail":"\\/style\\/picture\\/1-1f5041ui60-l.jpg","template":""}'),
+(10, 0, 1, 1, 1, 1, 1, 0, 0, 2, 0, 0, 1524578437, 1524578437, 1524578424, 1524580127, '饭vgbdsgfds', '', '', '', '&lt;p&gt;很过分的事&lt;/p&gt;', NULL, '{"thumbnail":"\\/style\\/picture\\/1-1f5041ui60-l.jpg","template":""}'),
+(11, 0, 1, 1, 1, 1, 1, 0, 0, 22, 0, 0, 1524578453, 1524579215, 1524578400, 0, '高档服饰股份的', '', '本科技术力量和整体水平在全国核医学科中处于领先地位，尤其在呼吸核医学方面有独特的优势。 目前开展的临床诊疗项目包括', '', '&lt;p&gt;&lt;img src=&quot;/style/picture/1-1f5041u910612.jpg&quot;&gt;&lt;/p&gt;', NULL, '{"thumbnail":"\\/style\\/picture\\/1-1f5041ui60-l.jpg","template":""}');
 
 -- --------------------------------------------------------
 
@@ -804,7 +863,15 @@ CREATE TABLE IF NOT EXISTS `yl_recycle_bin` (
   `name` varchar(255) DEFAULT '' COMMENT '删除内容名称',
   `user_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '用户id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT=' 回收站' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COMMENT=' 回收站' AUTO_INCREMENT=3 ;
+
+--
+-- 转存表中的数据 `yl_recycle_bin`
+--
+
+INSERT INTO `yl_recycle_bin` (`id`, `object_id`, `create_time`, `table_name`, `name`, `user_id`) VALUES
+(1, 9, 1524580127, 'portal_post', '医疗特色', 1),
+(2, 10, 1524580127, 'portal_post', '饭vgbdsgfds', 1);
 
 -- --------------------------------------------------------
 
@@ -863,7 +930,39 @@ CREATE TABLE IF NOT EXISTS `yl_route` (
   `full_url` varchar(255) NOT NULL DEFAULT '' COMMENT '完整url',
   `url` varchar(255) NOT NULL DEFAULT '' COMMENT '实际显示的url',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='url路由表' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COMMENT='url路由表' AUTO_INCREMENT=27 ;
+
+--
+-- 转存表中的数据 `yl_route`
+--
+
+INSERT INTO `yl_route` (`id`, `list_order`, `status`, `type`, `full_url`, `url`) VALUES
+(1, 5000, 1, 2, 'portal/List/index?id=1', 'offices'),
+(2, 4999, 1, 2, 'portal/Article/index?cid=1', 'offices/:id'),
+(3, 5000, 1, 2, 'portal/Page/index?id=1', 'medical'),
+(4, 5000, 1, 2, 'portal/Page/index?id=2', 'abstract'),
+(5, 5000, 1, 2, 'portal/List/index?id=2', 'team'),
+(6, 4999, 1, 2, 'portal/Article/index?cid=2', 'team/:id'),
+(7, 5000, 1, 2, 'portal/List/index?id=3', 'news'),
+(8, 4999, 1, 2, 'portal/Article/index?cid=3', 'news/:id'),
+(9, 5000, 1, 2, 'portal/Page/index?id=3', 'contact'),
+(10, 5000, 1, 2, 'portal/List/index?id=4', 'nonoperating'),
+(11, 4999, 1, 2, 'portal/Article/index?cid=4', 'nonoperating/:id'),
+(12, 5000, 1, 2, 'portal/List/index?id=5', 'operating'),
+(13, 4999, 1, 2, 'portal/Article/index?cid=5', 'operating/:id'),
+(14, 5000, 1, 2, 'portal/List/index?id=6', 'diagnosis'),
+(15, 4999, 1, 2, 'portal/Article/index?cid=6', 'diagnosis/:id'),
+(16, 5000, 1, 2, 'portal/List/index?id=7', 'other'),
+(17, 4999, 1, 2, 'portal/Article/index?cid=7', 'other/:id'),
+(18, 5000, 1, 2, 'portal/Page/index?id=4', 'culture'),
+(19, 5000, 1, 2, 'portal/Page/index?id=5', 'history'),
+(20, 5000, 1, 2, 'portal/List/index?id=8', 'hospitalnews'),
+(21, 4999, 1, 2, 'portal/Article/index?cid=8', 'hospitalnews/:id'),
+(22, 5000, 1, 2, 'portal/List/index?id=9', 'industrynews'),
+(23, 4999, 1, 2, 'portal/Article/index?cid=9', 'industrynews/:id'),
+(24, 5000, 1, 2, 'portal/Page/index?id=6', 'needle'),
+(25, 5000, 1, 2, 'portal/Page/index?id=7', 'outpatient'),
+(26, 5000, 1, 2, 'portal/Page/index?id=8', 'care');
 
 -- --------------------------------------------------------
 
@@ -955,7 +1054,7 @@ CREATE TABLE IF NOT EXISTS `yl_theme_file` (
   `config_more` text COMMENT '模板更多配置,来源模板的配置文件',
   `draft_more` text COMMENT '模板更多配置,用户临时保存的配置',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
 -- 转存表中的数据 `yl_theme_file`
@@ -985,7 +1084,11 @@ INSERT INTO `yl_theme_file` (`id`, `is_public`, `list_order`, `theme`, `name`, `
 (21, 0, 10, 'yl_m', '单页面', 'portal/Page/index', 'portal/page', '单页面模板文件', '{"widgets":{"hottest_articles":{"title":"\\u70ed\\u95e8\\u6587\\u7ae0","display":"1","vars":{"hottest_articles_category_id":{"title":"\\u6587\\u7ae0\\u5206\\u7c7bID","value":"","type":"text","dataSource":{"api":"portal\\/category\\/index","multi":true},"placeholder":"\\u8bf7\\u9009\\u62e9\\u5206\\u7c7b","tip":"","rule":{"require":true}}}},"last_articles":{"title":"\\u6700\\u65b0\\u53d1\\u5e03","display":"1","vars":{"last_articles_category_id":{"title":"\\u6587\\u7ae0\\u5206\\u7c7bID","value":"","type":"text","dataSource":{"api":"portal\\/category\\/index","multi":true},"placeholder":"\\u8bf7\\u9009\\u62e9\\u5206\\u7c7b","tip":"","rule":{"require":true}}}}}}', '{"widgets":{"hottest_articles":{"title":"\\u70ed\\u95e8\\u6587\\u7ae0","display":"1","vars":{"hottest_articles_category_id":{"title":"\\u6587\\u7ae0\\u5206\\u7c7bID","value":"","type":"text","dataSource":{"api":"portal\\/category\\/index","multi":true},"placeholder":"\\u8bf7\\u9009\\u62e9\\u5206\\u7c7b","tip":"","rule":{"require":true}}}},"last_articles":{"title":"\\u6700\\u65b0\\u53d1\\u5e03","display":"1","vars":{"last_articles_category_id":{"title":"\\u6587\\u7ae0\\u5206\\u7c7bID","value":"","type":"text","dataSource":{"api":"portal\\/category\\/index","multi":true},"placeholder":"\\u8bf7\\u9009\\u62e9\\u5206\\u7c7b","tip":"","rule":{"require":true}}}}}}', NULL),
 (22, 0, 10, 'yl_m', '搜索页面', 'portal/search/index', 'portal/search', '搜索模板文件', '{"vars":{"varName1":{"title":"\\u70ed\\u95e8\\u641c\\u7d22","value":"1","type":"text","tip":"\\u8fd9\\u662f\\u4e00\\u4e2atext","rule":{"require":true}}}}', '{"vars":{"varName1":{"title":"\\u70ed\\u95e8\\u641c\\u7d22","value":"1","type":"text","tip":"\\u8fd9\\u662f\\u4e00\\u4e2atext","rule":{"require":true}}}}', NULL),
 (23, 1, 0, 'yl_m', '模板全局配置', 'public/Config', 'public/config', '模板全局配置文件', '{"vars":{"enable_mobile":{"title":"\\u624b\\u673a\\u6ce8\\u518c","value":1,"type":"select","options":{"1":"\\u5f00\\u542f","0":"\\u5173\\u95ed"},"tip":""}}}', '{"vars":{"enable_mobile":{"title":"\\u624b\\u673a\\u6ce8\\u518c","value":1,"type":"select","options":{"1":"\\u5f00\\u542f","0":"\\u5173\\u95ed"},"tip":""}}}', NULL),
-(24, 1, 1, 'yl_m', '导航条', 'public/Nav', 'public/nav', '导航条模板文件', '{"vars":{"company_name":{"title":"\\u516c\\u53f8\\u540d\\u79f0","name":"company_name","value":"ThinkCMF","type":"text","tip":"","rule":[]}}}', '{"vars":{"company_name":{"title":"\\u516c\\u53f8\\u540d\\u79f0","name":"company_name","value":"ThinkCMF","type":"text","tip":"","rule":[]}}}', NULL);
+(24, 1, 1, 'yl_m', '导航条', 'public/Nav', 'public/nav', '导航条模板文件', '{"vars":{"company_name":{"title":"\\u516c\\u53f8\\u540d\\u79f0","name":"company_name","value":"ThinkCMF","type":"text","tip":"","rule":[]}}}', '{"vars":{"company_name":{"title":"\\u516c\\u53f8\\u540d\\u79f0","name":"company_name","value":"ThinkCMF","type":"text","tip":"","rule":[]}}}', NULL),
+(25, 0, 10, 'yl', '门诊列表页', 'portal/List/index', 'portal/list_mz', '门诊列表模板文件', '[]', '[]', NULL),
+(26, 0, 10, 'yl', '医师列表页', 'portal/List/index', 'portal/list_ys', '医师列表模板文件', '[]', '[]', NULL),
+(27, 0, 10, 'yl', '门诊文章页', 'portal/Article/index', 'portal/article_mz', '门诊页模板文件', '{"vars":{"hot_articles_category_id":{"title":"Hot Articles\\u5206\\u7c7bID","value":"1","type":"text","tip":"","rule":[]}}}', '{"vars":{"hot_articles_category_id":{"title":"Hot Articles\\u5206\\u7c7bID","value":"1","type":"text","tip":"","rule":[]}}}', NULL),
+(28, 0, 10, 'yl', '医疗特色页面', 'portal/Page/index', 'portal/page_yl', '医疗特色页面模板文件', '{"widgets":{"hottest_articles":{"title":"\\u70ed\\u95e8\\u6587\\u7ae0","display":"1","vars":{"hottest_articles_category_id":{"title":"\\u6587\\u7ae0\\u5206\\u7c7bID","value":"","type":"text","dataSource":{"api":"portal\\/category\\/index","multi":true},"placeholder":"\\u8bf7\\u9009\\u62e9\\u5206\\u7c7b","tip":"","rule":{"require":true}}}},"last_articles":{"title":"\\u6700\\u65b0\\u53d1\\u5e03","display":"1","vars":{"last_articles_category_id":{"title":"\\u6587\\u7ae0\\u5206\\u7c7bID","value":"","type":"text","dataSource":{"api":"portal\\/category\\/index","multi":true},"placeholder":"\\u8bf7\\u9009\\u62e9\\u5206\\u7c7b","tip":"","rule":{"require":true}}}}}}', '{"widgets":{"hottest_articles":{"title":"\\u70ed\\u95e8\\u6587\\u7ae0","display":"1","vars":{"hottest_articles_category_id":{"title":"\\u6587\\u7ae0\\u5206\\u7c7bID","value":"","type":"text","dataSource":{"api":"portal\\/category\\/index","multi":true},"placeholder":"\\u8bf7\\u9009\\u62e9\\u5206\\u7c7b","tip":"","rule":{"require":true}}}},"last_articles":{"title":"\\u6700\\u65b0\\u53d1\\u5e03","display":"1","vars":{"last_articles_category_id":{"title":"\\u6587\\u7ae0\\u5206\\u7c7bID","value":"","type":"text","dataSource":{"api":"portal\\/category\\/index","multi":true},"placeholder":"\\u8bf7\\u9009\\u62e9\\u5206\\u7c7b","tip":"","rule":{"require":true}}}}}}', NULL);
 
 -- --------------------------------------------------------
 
@@ -1050,7 +1153,7 @@ CREATE TABLE IF NOT EXISTS `yl_user` (
 --
 
 INSERT INTO `yl_user` (`id`, `user_type`, `sex`, `birthday`, `last_login_time`, `score`, `coin`, `balance`, `create_time`, `user_status`, `user_login`, `user_pass`, `user_nickname`, `user_email`, `user_url`, `avatar`, `signature`, `last_login_ip`, `user_activation_key`, `mobile`, `more`) VALUES
-(1, 1, 0, 0, 1524474825, 0, 0, '0.00', 1524474811, 1, 'admin', '###a569348695a59bad6babe8dc4b46f109', 'admin', '164466159@qq.com', '', '', '', '127.0.0.1', '', '', NULL);
+(1, 1, 0, 0, 1524573705, 0, 0, '0.00', 1524474811, 1, 'admin', '###a569348695a59bad6babe8dc4b46f109', 'admin', '164466159@qq.com', '', '', '', '127.0.0.1', '', '', NULL);
 
 -- --------------------------------------------------------
 

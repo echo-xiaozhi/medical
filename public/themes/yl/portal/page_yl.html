@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>{$page.post_title}</title>
+    <meta name="keywords" content="{$page.post_keywords}"/>
+    <meta name="description" content="{$page.post_excerpt}"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <include file="public@head" />
+    <script type="text/javascript" src="/style/js/org1470120033.js" data-main="baseMain"></script>
+</head>
+
+<body>
+<include file="public@nav" />
+<div id="sitecontent">
+    <div class="npagePage Pageservice">
+        <div id="banner">
+            <div style="background-image:url(/style/images/service.jpg);"></div>
+        </div>
+        <div class="content">
+            <div class="header">
+                <p class="title">{$page.post_title}</p>
+                <p class="subtitle"></p>
+            </div>
+            <div id="servicelist">
+                <ul class="wrap">
+                    <php>
+                        $zl = get_page(6);
+                        $ts = get_page(7);
+                        $tx = get_page(8);
+                    </php>
+                    <li class="serviceitem">
+                        <a href="{:cmf_url('portal/Page/index',['id'=>$zl.id])}" target="_blank">
+                            <img src="{:cmf_get_image_url(json_decode($zl.more,true)['thumbnail'])}" width="320" height="120"/>
+                            <div>
+                                <p class="title">{$zl.post_title}</p>
+                                <p class="description">{$zl.post_excerpt}</p>
+                            </div>
+                        </a>
+                        <a href="{:cmf_url('portal/Page/index',['id'=>$zl.id])}" target="_blank" class="details">more<i class="fa fa-angle-right"></i></a>
+                    </li>
+                    <li class="serviceitem">
+                        <a href="{:cmf_url('portal/Page/index',['id'=>$ts.id])}" target="_blank">
+                            <img src="{:cmf_get_image_url(json_decode($ts.more,true)['thumbnail'])}" width="320" height="120"/>
+                            <div>
+                                <p class="title">{$ts.post_title}</p>
+                                <p class="description">{$ts.post_excerpt}</p>
+                            </div>
+                        </a>
+                        <a href="{:cmf_url('portal/Page/index',['id'=>$tx.id])}" target="_blank" class="details">more<i class="fa fa-angle-right"></i></a>
+                    </li>
+                    <li class="serviceitem"><a href="{:cmf_url('portal/Page/index',['id'=>$tx.id])}" target="_blank">
+                        <img src="{:cmf_get_image_url(json_decode($tx.more,true)['thumbnail'])}" width="320" height="120"/>
+                            <div>
+                                <p class="title">{$tx.post_title}</p>
+                                <p class="description">{$tx.post_excerpt}</p>
+                            </div>
+                        </a>
+                        <a href="{:cmf_url('portal/Page/index',['id'=>$tx.id])}" target="_blank" class="details">more<i class="fa fa-angle-right"></i></a>
+                    </li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <div id="pages"></div>
+        </div>
+    </div>
+</div>
+<include file="public@footer" />

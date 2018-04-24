@@ -92,4 +92,10 @@ ul.content_list:after {content: '';display: block;clear: both;}
 .pagess ul li.thisclass a {color: #fff;}
 .pagess ul li a{ display:block;color:#999}
 .pagess ul li a:hover {color: #fff;}
+.pagess .active {
+    display: inline-block;border: 1px solid #ccc;padding: 2px 9px;margin: 0 3px;background: #ccc;color: #fff;
+}
+.pagess .active span{
+    color: #fff;
+}
 #projectbody img{max-width:820px; height:auto !important}

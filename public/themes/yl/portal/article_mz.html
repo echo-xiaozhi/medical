@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>{$article.post_title}</title>
+    <meta name="keywords" content="{$article.post_keywords}"/>
+    <meta name="description" content="{$article.post_excerpt}"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <include file="public@head" />
+    <script type="text/javascript" src="/style/js/org1470120033.js" data-main="baseMain"></script>
+</head>
+<body class="nobanner">
+<include file="public@nav" />
+<div id="sitecontent">
+    <div class="npagePage " id="npagePage">
+        <div class="content">
+            <div id="projectwrap" class="fw">
+                <div id="projectbody">
+                    {$article.post_content}
+                    <div class="clear"></div>
+                    <div class="postbody"></div>
+                </div>
+                <div id="projectinfo">
+                    <div id="projectih">
+                        <div class="header">
+                            <p class="title">{$article.post_title}</p>
+                            <p class="subtitle"></p>
+                            <div class="description">
+                                <p style="white-space: normal;">{$article.post_excerpt}></p>
+                                <p style="white-space: normal;"><br/>
+                                </p>
+                                <p style="white-space: normal;">
+                                    <a href="http://wpa.qq.com/msgrd?v=3&uin=80044685&site=qq&menu=yes" target="_blank">预约挂号</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div id="projectshow">
+                    <div id="projectib">
+                        <if condition="$prev_article['id'] eq 0">
+                            <div class="projectitem">
+                                <a href="{:cmf_url('portal/Article/index',['id'=>$article.id,'cid'=>$category.id])}" target="_blank">
+                                    <img src="{:cmf_get_image_url($article.more.thumbnail)}"/>
+                                    <div class="project_info">
+                                        <div>
+                                            <p class="title">{$article.post_title}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <else/>
+                            <div class="projectitem">
+                                <a href="{:cmf_url('portal/Article/index',['id'=>$prev_article['id'],'cid'=>$category.id])}" target="_blank">
+                                    <img src="{:cmf_get_image_url($prev_article.more.thumbnail)}"/>
+                                    <div class="project_info">
+                                        <div>
+                                            <p class="title">{$prev_article.post_title}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </if>
+                        <if condition="$next_article['id'] eq 0">
+                            <div class="projectitem">
+                                <a href="{:cmf_url('portal/Article/index',['id'=>$article.id,'cid'=>$category.id])}" target="_blank">
+                                    <img src="{:cmf_get_image_url($article.more.thumbnail)}"/>
+                                    <div class="project_info">
+                                        <div>
+                                            <p class="title">{$article.post_title}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <else/>
+                            <div class="projectitem">
+                                <a href="{:cmf_url('portal/Article/index',['id'=>$next_article['id'],'cid'=>$category.id])}" target="_blank">
+                                    <img src="{:cmf_get_image_url($next_article.more.thumbnail)}"/>
+                                    <div class="project_info">
+                                        <div>
+                                            <p class="title">{$next_article.post_title}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </if>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="public@footer" />
