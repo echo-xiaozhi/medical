@@ -1,132 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html class="effect">
 <head>
-    <title>{$category.name} {$category.seo_title} {$site_info.site_name|default=''}</title>
-    <meta name="keywords" content="{$category.seo_keywords},{$site_info.site_seo_keywords|default=''}"/>
-    <meta name="description" content="{$category.seo_description},{$site_info.site_seo_description|default=''}">
-    <include file="public@head"/>
-    <hook name="before_head_end"/>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>{$category.seo_title|default=$category.name}</title>
+    <meta name="keywords" content="{$category.seo_keywords}" />
+    <meta name="description" content="{$category.seo_description}" />
+    <include file="public@head" />
 </head>
-<body class="body-white">
-<include file="public@nav"/>
-<div class="container">
-    <php>$demo_time=2;</php>
-    <h2>{$category.name}</h2>
-    <div class="row">
-        <div class="col-md-9">
-            <div class="">
-                <php>
-                    $where=[
-                    'post.create_time'=>['egt',0]
-                    ];
-                    $page=[
-                        'list_rows'=>10,
-                        'next'=>'下一页',
-                        'prev'=>'上一页'
-                    ];
-                </php>
-                <portal:articles item="vo" where="$where" order="post.create_time DESC" page="$page"
-                                 relation="categories"
-                                 categoryIds="$category.id"
-                                 returnVarName="articles_data">
-                    <div class="list-boxes">
-                        <h2><a href="{:cmf_url('portal/Article/index',array('id'=>$vo['id'],'cid'=>$category['id']))}">{$vo.post_title}</a>
-                        </h2>
-                        <p>{$vo.post_excerpt}</p>
-                        <div>
-                            <div class="pull-left">
-                                <div class="list-actions">
-                                    <a href="javascript:;"><i class="fa fa-eye"></i><span>{$vo.post_hits}</span></a>
-                                    <a href="{:url('portal/Article/doLike',array('id'=>$vo['id']))}"
-                                       class="js-count-btn"><i class="fa fa-thumbs-up"></i><span class="count">{$vo.post_like}</span></a>
-                                    <a href="{:url('user/Favorite/add',array('id'=>$vo['id'],'cid'=>$category['id']))}"
-                                       class="js-favorite-btn"
-                                       data-id="{$vo.id}"
-                                       data-table="portal_post"
-                                       data-title="{:base64_encode($vo.post_title)}"
-                                       data-url="{:cmf_url_encode('portal/Article/index',array('id'=>$vo['id'],'cid'=>$category['id']))}"
-                                    >
-                                        <i class="fa fa-star-o"></i>
-                                    </a>
+
+<body>
+<div id="sitecontent" class="transform">
+    <include file="public@nav" />
+    <div class="scrollView">
+        <div class="npagePage">
+            <div class="content">
+                <div id="category" class="dropmenu pro-dropmenu">
+                    <div class="label plr20">
+                        <i class="down fa fa-angle-down transform"></i>
+                        <div class="text1">{$category.name}</div>
+                    </div>
+                    <ul class="transform" data-height_bak="205" data-height="auto">
+                        <portal:subCategories categoryId="3" item="vo">
+                            <li><a href="{:cmf_url('portal/List/index',['id'=>$vo.id])}">{$vo.name}</a></li>
+                        </portal:subCategories>
+                    </ul>
+                </div>
+                <div id="newslist">
+                    <php>
+                        if($category['id'] == 3){
+                            $ids = get_children_all(3);
+                        }else{
+                            $ids = $category['id'];
+                        }
+                        $page = [
+                            'list_rows' => 6,
+                            'next' => '下一页',
+                            'prev' => '上一页'
+                        ];
+                    </php>
+                    <portal:articles categoryIds="$ids" order="post.published_time desc" page="$page">
+                        <div class="newstitem plr10 wow fadeIn">
+                            <a class="newsinfo" href="{:cmf_url('portal/Article/index',['id'=>$vo.id,'cid'=>$vo.category_id])}">
+                                <div class="newsimage"> <img src="{:cmf_get_image_url($vo.more.thumbnail)}" width="auto" height="auto" /> </div>
+                                <div class="newsdate">
+                                    <p class="md">{$vo.published_time|date='m-d',###}</p>
+                                    <p class="year">{$vo.published_time|date='Y',###}</p>
                                 </div>
-                            </div>
-                            <a class="btn btn-warning btn-sm pull-right"
-                               href="{:cmf_url('portal/Article/index',array('id'=>$vo['id'],'cid'=>$category['id']))}">查看更多</a>
+                                <div class="newsbody">
+                                    <p class="title ellipsis">{$vo.post_title}</p>
+                                    <p class="description">{$vo.post_excerpt}</p>
+                                </div>
+                            </a>
                         </div>
-                    </div>
-                </portal:articles>
-
+                    </portal:articles>
+                </div>
+                <div class="pagess">
+                    <ul>
+                        <page />
+                    </ul>
+                </div>
             </div>
-            <ul class="pagination">
-                <page/>
-            </ul>
         </div>
-        <div class="col-md-3">
-
-            <widget name="hottest_articles">
-                <div class="tc-box">
-                    <div class="headtitle">
-                        <h2>{$widget.title}</h2>
-                    </div>
-                    <div class="ranking">
-                        <php>
-                            $hot_articles=[];
-                        </php>
-                        <ul class="list-unstyled">
-                            <portal:articles limit="5" order="post.post_hits DESC"
-                                             categoryIds="$widget.vars.hottest_articles_category_id">
-                                <php>$top=$key<3?"top3":"";</php>
-                                <li class="{$top}">
-                                    <i>{$key+1}</i>
-                                    <a title="{$vo.post_title}"
-                                       href="{:cmf_url('portal/Article/index',array('id'=>$vo['id']))}">
-                                        {$vo.post_title}
-                                    </a>
-                                </li>
-                            </portal:articles>
-                        </ul>
-                    </div>
-                </div>
-            </widget>
-
-
-            <widget name="last_articles">
-                <div class="tc-box">
-                    <div class="headtitle">
-                        <h2>{$widget.title}</h2>
-                    </div>
-                    <div class="posts">
-                        <portal:articles limit="5" order="post.published_time DESC"
-                                         categoryIds="$widget.vars.last_articles_category_id">
-                            <dl class="dl-horizontal">
-                                <dt>
-                                    <a class="img-wraper"
-                                       href="{:cmf_url('portal/Article/index',array('id'=>$vo.id))}">
-                                        <if condition="empty($vo.more.thumbnail)">
-                                            <img src="__TMPL__/public/assets/images/default_tupian4.png"
-                                                 class="img-responsive" alt="{$vo.post_title}"/>
-                                            <else/>
-                                            <img src="{:cmf_get_image_url($vo.more.thumbnail)}"
-                                                 class="img-responsive" alt="{$vo.post_title}"/>
-                                        </if>
-                                    </a>
-                                </dt>
-                                <dd>
-                                    <a href="{:cmf_url('portal/Article/index',array('id'=>$vo['id']))}">{$vo.post_title}</a>
-                                </dd>
-                            </dl>
-                        </portal:articles>
-                    </div>
-                </div>
-            </widget>
-
-        </div>
-    </div>
-
-    <include file="public@footer"/>
-</div>
-
-<include file="public@scripts"/>
-<hook name="before_body_end"/>
+<include file="public@footer" />
+<script type="text/javascript" src="/style/js/morg.min.js" data-main="ListMain"></script>
 </body>
 </html>

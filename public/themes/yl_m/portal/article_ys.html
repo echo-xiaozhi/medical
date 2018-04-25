@@ -15,16 +15,19 @@
 <div id="sitecontent" class="transform">
     <include file="public@nav" />
     <div class="scrollView">
-        <div class="npagePage">
-            <div class="content plr10">
-                <div id="newpost">
-                    <div class="header">
-                        <p class="title">{$article.post_title}</p>
-                        <p class="subtitle"></p>
-                    </div>
-                    <div class="postbody">
-                        <div class="fw postbody" id="gx">
-                            {$article.post_content}
+        <div class="npagePage temalb">
+            <div class="content">
+                <div id="teampost">
+                    <div class="plr5"> <img src="{:cmf_get_image_url($article.more.thumbnail)}" width="408" class="imgcw" /> </div>
+                    <div class="plr10">
+                        <div class="header">
+                            <p class="title">{$article.post_title}</p>
+                            <p class="subtitle">{$article.post_source}</p>
+                        </div>
+                        <div class="postbody">
+                            <div class="postbody" id="gx">
+                               {$article.post_content}
+                            </div>
                         </div>
                     </div>
                 </div>

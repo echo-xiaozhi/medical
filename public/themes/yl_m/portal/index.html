@@ -1,188 +1,247 @@
 <!DOCTYPE html>
-<html>
+<html class="effect">
 <head>
-    <title>手机 {$site_info.site_name|default=''}</title>
-    <meta name="keywords" content="{$site_info.site_seo_keywords|default=''}"/>
-    <meta name="description" content="{$site_info.site_seo_description|default=''}">
-    <include file="public@head"/>
-    <link href="__TMPL__/public/assets/css/slippry/slippry.css" rel="stylesheet">
-    <style>
-        .caption-wraper {
-            position: absolute;
-            left: 50%;
-            bottom: 2em;
-        }
-
-        .caption-wraper .caption {
-            position: relative;
-            left: -50%;
-            background-color: rgba(0, 0, 0, 0.54);
-            padding: 0.4em 1em;
-            color: #fff;
-            -webkit-border-radius: 1.2em;
-            -moz-border-radius: 1.2em;
-            -ms-border-radius: 1.2em;
-            -o-border-radius: 1.2em;
-            border-radius: 1.2em;
-        }
-
-        .tc-gridbox {
-            margin: 0;
-        }
-
-        @media (max-width: 767px) {
-            .caption-wraper {
-                left: 0;
-                bottom: 0.4em;
-            }
-
-            .caption-wraper .caption {
-                left: 0;
-                padding: 0.2em 0.4em;
-                font-size: 0.92em;
-                -webkit-border-radius: 0;
-                -moz-border-radius: 0;
-                -ms-border-radius: 0;
-                -o-border-radius: 0;
-                border-radius: 0;
-            }
-        }
-
-    </style>
-    <hook name="before_head_end"/>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <title>{$site_info.site_seo_title|default=$site_info.site_name}</title>
+    <meta name="description" content="{$site_info.site_seo_description}"/>
+    <meta name="keywords" content="{$site_info.site_seo_keywords}"/>
+    <include file="public@head" />
 </head>
-<body class="body-white">
-<include file="public@nav"/>
-
-<ul id="home-slider" class="list-unstyled">
-    <php>
-        $top_slide_id=empty($theme_vars['top_slide'])?1:$theme_vars['top_slide'];
-    </php>
-    <slides id="$top_slide_id">
-        <li>
-            <div class="caption-wraper">
-                <div class="caption">{$vo.title|default=''}</div>
+<body>
+<div id="sitecontent" class="transform">
+    <include file="public@nav" />
+    <div class="scrollView">
+        <div id="indexPage">
+            <div id="mslider">
+                <ul class="slider" id="t-slider">
+                    <slides id="1">
+                        <li>
+                            <a>
+                                <div class="slider_img"><img src="{:cmf_get_image_url($vo.image)}" class="imgcw"/></div>
+                                <div class="slider_info">
+                                    <p class="title ellipsis"></p>
+                                </div>
+                            </a>
+                        </li>
+                    </slides>
+                </ul>
+                <div class="clear"></div>
             </div>
-            <a href="{$vo.url|default=''}"><img src="{:cmf_get_image_url($vo.image)}" alt=""></a>
-        </li>
-    </slides>
-    <noslides id="$top_slide_id">
-        <li>
-            <div class="caption-wraper">
-                <div class="caption">此幻灯片只是演示,您没有设置任何幻灯片,请到后台模板设置！</div>
-            </div>
-            <a href=""><img src="__TMPL__/public/assets/images/demo/1.jpg" alt=""></a>
-        </li>
-        <li>
-            <div class="caption-wraper">
-                <div class="caption">此幻灯片只是演示,您没有设置任何幻灯片,请到后台模板设置！</div>
-            </div>
-            <a href=""><img src="__TMPL__/public/assets/images/demo/2.jpg" alt=""></a>
-        </li>
-        <li>
-            <div class="caption-wraper">
-                <div class="caption">此幻灯片只是演示,您没有设置任何幻灯片,请到后台模板设置！</div>
-            </div>
-            <a href=""><img src="__TMPL__/public/assets/images/demo/3.jpg" alt=""></a>
-        </li>
-    </noslides>
-</ul>
-
-<div class="container">
-    <widget name="features">
-        <div>
-            <h1 class="text-center">{$widget.title}</h1>
-            <h3 class="text-center">{$widget.vars.sub_title}</h3>
-        </div>
-        <php>
-            $features_count = count($widget['vars']['features']);
-            $rows = ceil($features_count/3);
-        </php>
-        <for start="1" end="$rows" comparison="elt" step="1" name="row">
-            <php>
-                $first_row = ($row-1)*3;
-                $features = array_slice($widget['vars']['features'],$first_row,3);
-            </php>
-            <div class="row">
-                <foreach name="features" item="vo">
-                    <div class="col-md-4">
-                        <h2 class="font-large nospace"><i class="fa fa-{$vo.icon}"></i> {$vo.title}</h2>
-                        <p>{$vo.content}</p>
+            <div id="mservice" class="module">
+                <div class="content">
+                    <div class="header">
+                        <p class="title">医疗特色</p>
+                        <p class="subtitle"></p>
                     </div>
-                </foreach>
+                    <div class="slider_wrapper">
+                        <ul class="slider">
+                            <php>
+                                $zl = get_page(6);
+                                $ts = get_page(7);
+                                $tx = get_page(8);
+                            </php>
+                            <li class="serviceitem wow fadeIn">
+                                <a href="{:cmf_url('portal/Page/index',['id'=>$zl.id])}">
+                                    <img src="{:cmf_get_image_url(json_decode($zl.more,true)['thumbnail'])}" width="160" height="60"/>
+                                </a>
+                                <div>
+                                    <p class="title">{$zl.post_title}</p>
+                                    <p class="description">{$zl.post_excerpt}</p>
+                                </div>
+                            </li>
+                            <li class="serviceitem wow fadeIn">
+                                <a href="{:cmf_url('portal/Page/index',['id'=>$ts.id])}">
+                                    <img src="{:cmf_get_image_url(json_decode($ts.more,true)['thumbnail'])}" width="160" height="60"/>
+                                </a>
+                                <div>
+                                    <p class="title">{$ts.post_title}</p>
+                                    <p class="description">{$ts.post_excerpt}</p>
+                                </div>
+                            </li>
+                            <li class="serviceitem wow fadeIn">
+                                <a href="{:cmf_url('portal/Page/index',['id'=>$tx.id])}">
+                                    <img src="{:cmf_get_image_url(json_decode($tx.more,true)['thumbnail'])}" width="160" height="60"/>
+                                </a>
+                                <div>
+                                    <p class="title">{$tx.post_title}</p>
+                                    <p class="description">{$tx.post_excerpt}</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="height:0"> &nbsp;</div>
+                </div>
             </div>
-        </for>
-
-    </widget>
-
-    <widget name="last_news">
-        <div>
-            <h1 class="text-center">{$widget.title}</h1>
-        </div>
-
-        <div class="row">
-            <php>
-                $widget["vars"]["last_news_category_id"] = empty($widget["vars"]["last_news_category_id"])?1:$widget["vars"]["last_news_category_id"];
-                $last_news_limit=4;
-            </php>
-            <portal:articles limit="$last_news_limit" order="post.published_time DESC"
-                             categoryIds="$widget.vars.last_news_category_id">
-                <div class="col-md-3">
-                    <div class="tc-gridbox">
-                        <div class="header">
-                            <div class="item-image">
-                                <a href="{:cmf_url('portal/Article/index',array('id'=>$vo.id,'cid'=>$vo.category_id))}">
-                                    <present name="vo.more.thumbnail">
-                                        <empty name="vo.more.thumbnail">
-                                            <img src="__TMPL__/public/assets/images/default-thumbnail.png"
-                                                 class="img-responsive"
-                                                 alt="">
-                                            <else/>
-                                            <img src="{:cmf_get_image_url($vo.more.thumbnail)}"
-                                                 class="img-responsive"
-                                                 alt="">
-                                        </empty>
-                                        <else/>
-                                        <img src="__TMPL__/public/assets/images/default-thumbnail.png"
-                                             class="img-responsive"
-                                             alt="">
-                                    </present>
+            <div id="mproject" class="module">
+                <div class="content">
+                    <div class="header">
+                        <p class="title">门诊科室</p>
+                        <p class="subtitle"></p>
+                    </div>
+                    <div id="projectlist">
+                        <!--yyLayout masonry-->
+                        <div class="module-content" id="projectlist">
+                            <div class="projectSubList" id="projectSubList_">
+                                <div class="projectSubHeader">
+                                    <p class="title"></p>
+                                    <p class="subtitle"></p>
+                                </div>
+                                <div class="wrapper">
+                                    <ul class="content_list" data-options-sliders="8" data-options-margin="15"
+                                        data-options-ease="1" data-options-speed="1">
+                                        <php>
+                                            $ids = get_children_all(1);
+                                        </php>
+                                        <portal:articles categoryIds="$ids" order="post.published_time desc" limit="4">
+                                            <li id="projectitem_{$key}" class="projectitem wow">
+                                                <a href="{:cmf_url('portal/Article/index',['id'=>$vo.id,'cid'=>$vo.category_id])}" class="projectitem_content" target="_blank">
+                                                    <div class="projectitem_wrapper">
+                                                        <div class="project_img">
+                                                            <img src="{:cmf_get_image_url($vo.more.thumbnail)}" width="650" height="385"/>
+                                                        </div>
+                                                        <div class="project_info">
+                                                            <div>
+                                                                <p class="title">{$vo.post_title}</p>
+                                                                <p class="description hide">{$vo.post_excerpt}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </portal:articles>
+                                        <div class="clear"></div>
+                                    </ul>
+                                </div>
+                                <!--wrapper-->
+                            </div>
+                            <!--projectSubList-->
+                        </div>
+                        <!--projectlist-->
+                        <div class="clear"></div>
+                    </div>
+                    <a href="{:cmf_url('portal/List/index',['id'=>1])}" id="projectmore">MORE</a></div>
+            </div>
+            <div id="mteam" class="module">
+                <div class="content plr10">
+                    <div class="header">
+                        <p class="title">医师团队</p>
+                        <p class="subtitle"></p>
+                    </div>
+                    <ul id="teamlist">
+                        <portal:articles categoryIds="2" order="post.published_time desc" limit="3">
+                            <li class="teamitem wow fadeIn">
+                                <a href="{:cmf_url('portal/Article/index',['id'=>$vo.id,'cid'=>2])}">
+                                    <div id="mteam_img"><img src="{:cmf_get_image_url($vo.more.thumbnail)}" width="90" height="90"/></div>
+                                    <div class="teaminfo">
+                                        <div class="header">
+                                            <p class="title">{$vo.post_title}</p>
+                                            <p class="subtitle">{$vo.post_source}</p>
+                                        </div>
+                                        <p class="description">{$vo.post_excerpt}</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </portal:articles>
+                    </ul>
+                    <div style="height:0"> &nbsp;</div>
+                </div>
+            </div>
+            <div id="mnews" class="module">
+                <div class="content">
+                    <div class="header">
+                        <p class="title">新闻动态</p>
+                        <p class="subtitle"></p>
+                    </div>
+                    <div id="newslist">
+                        <php>
+                            $ids = get_children_all(3);
+                        </php>
+                        <portal:articles categoryIds="$ids" order="post.published_time desc" limit="3">
+                            <div class="newstitem plr10 wow fadeIn" data-wow-delay="0.{$key}s">
+                                <a class="newsinfo" href="{:cmf_url('portal/Article/index',['id'=>$vo.id,'cid'=>$vo.category_id])}">
+                                    <div class="newsimage"><img src="{:cmf_get_image_url($vo.more.thumbnail)}" width="auto" height="auto"/></div>
+                                    <div class="newsdate">
+                                        <p class="md">{$vo.published_time|date='m-d',###}</p>
+                                        <p class="year">{$vo.published_time|date='Y',###}</p>
+                                    </div>
+                                    <div class="newsbody">
+                                        <p class="title ellipsis">{$vo.post_title}</p>
+                                        <p class="description">{$vo.post_excerpt}</p>
+                                    </div>
                                 </a>
                             </div>
-                            <h3>
-                                <a href="{:cmf_url('portal/Article/index',array('id'=>$vo.id,'cid'=>$vo.category_id))}">{$vo.post_title}</a>
-                            </h3>
-                            <hr>
+                        </portal:articles>
+                    </div>
+                    <div class="clear"></div>
+                    <a href="{:cmf_url('portal/List/index',['id'=>3])}" id="projectmore">MORE</a>
+                    <div style="height:0"> &nbsp;</div>
+                </div>
+            </div>
+            <div id="mpage" class="module ">
+                <div class="content">
+                    <div class="plr10">
+                        <php>
+                            $yy = get_page(2);
+                        </php>
+                        <div class="header">
+                            <p class="title">{$yy.post_title}</p>
                         </div>
-                        <div class="body">
-                            <p>
-                                <a href="{:cmf_url('portal/Article/index',array('id'=>$vo.id,'cid'=>$vo.category_id))}">...</a>
-                            </p>
+                        <p class="description"> {$yy.post_excerpt}</p>
+                    </div>
+                    <a href="{:cmf_url('portal/Page/index',['id'=>2])}" id="projectmore">MORE</a>
+                    <div class="fimg wow fadeIn" style="background-image:url({:cmf_get_image_url(json_decode($yy.more,true)['thumbnail'])})"></div>
+                    <div style="height:0"> &nbsp;</div>
+                </div>
+            </div>
+
+            <div id="mcontact" class="module">
+                <div class="content plr10 wow fadeIn">
+                    <div class="header">
+                        <p class="title">联系我们</p>
+                        <p class="subtitle">Contact us</p>
+                    </div>
+                    <div id="contactlist">
+                        <div id="contactinfo">
+                            <h3 class="ellipsis">{$site_info.site_gs}</h3>
+                            <p class="ellipsis">地点：{$site_info.site_dz}</p>
+                            <p class="ellipsis">电话：<a href="tel:{$site_info.site_phone}">{$site_info.site_phone}</a></p>
+                            <p class="ellipsis">邮箱：{$site_info.site_email}</p>
+                            <div>
+                                <a class="fl" href="http://www.weibo.com">
+                                    <i class="fa fa-weibo"></i>
+                                </a>
+                                <a id="mpbtn" class="fl" href="{:cmf_get_image_url($site_info.site_ewm)}">
+                                    <i class="fa fa-weixin"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </portal:articles>
+            </div>
         </div>
-    </widget>
-    <include file="public@footer"/>
-</div>
-<!-- /container -->
-<include file="public@scripts"/>
-<script src="__TMPL__/public/assets/js/slippry.min.js"></script>
-<script>
-    $(function () {
-        $("#home-slider").slippry({
-            transition: 'fade',
-            useCSS: true,
-            captions: false,
-            speed: 1000,
-            pause: 3000,
-            auto: true,
-            preload: 'visible'
-        });
-        $("#home-slider").show();
+<include file="public@footer" />
+<script type="text/javascript" src="/style/js/morg.min.js" data-main="IndexMain"></script>
+<script type="text/javascript">
+    $(document).ready(function (e) {
+        var img = $(".slider_img img")[0];
+        function sliderChulaiba() {
+            $('#t-slider').bxSlider({
+                nextText: '<i class="fa fa-angle-right"></i>',
+                prevText: '<i class="fa fa-angle-left"></i>',
+                auto: 0,
+                infiniteLoop: true,
+                hideControlOnEnd: true,
+            });
+        }
+        if (img.complete) sliderChulaiba();
+        else $(".slider_img img")[0].onload = function (e) {
+            sliderChulaiba();
+        };
     });
 </script>
-<hook name="before_body_end"/>
 </body>
 </html>

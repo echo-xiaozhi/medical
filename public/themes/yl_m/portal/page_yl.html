@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html class="effect">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>{$page.post_title}</title>
+    <meta name="keywords" content="{$page.post_keywords}" />
+    <meta name="description" content="{$page.post_excerpt}" />
+    <include file="public@head" />
+</head>
+
+<body>
+<div id="sitecontent" class="transform">
+    <include file="public@nav" />
+    <div class="scrollView">
+        <div class="npagePage">
+            <div class="content plr10">
+                <div id="servicelist">
+                    <ul class="wrap">
+                        <php>
+                            $zl = get_page(6);
+                            $ts = get_page(7);
+                            $tx = get_page(8);
+                        </php>
+                        <li class="serviceitem wow fadeIn">
+                            <a href="{:cmf_url('portal/Page/index',['id'=>$zl.id])}"><img src="{:cmf_get_image_url(json_decode($zl.more,true)['thumbnail'])}" width="320" height="120" /></a>
+                            <div>
+                                <p class="title ellipsis">{$zl.post_title}</p>
+                                <p class="description">{$zl.post_excerpt}</p>
+                            </div>
+                        </li>
+                        <li class="line"></li>
+                        <li class="serviceitem wow fadeIn">
+                            <a href="{:cmf_url('portal/Page/index',['id'=>$ts.id])}"><img src="{:cmf_get_image_url(json_decode($ts.more,true)['thumbnail'])}" width="320" height="120" /></a>
+                            <div>
+                                <p class="title ellipsis">{$ts.post_title}</p>
+                                <p class="description">{$ts.post_excerpt}</p>
+                            </div>
+                        </li>
+                        <li class="line"></li>
+                        <li class="serviceitem wow fadeIn">
+                            <a href="{:cmf_url('portal/Page/index',['id'=>$tx.id])}"><img src="{:cmf_get_image_url(json_decode($tx.more,true)['thumbnail'])}" width="320" height="120" /></a>
+                            <div>
+                                <p class="title ellipsis">{$tx.post_title}</p>
+                                <p class="description">{$tx.post_excerpt} </p>
+                            </div>
+                        </li>
+                        <li class="line"></li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+
+            </div>
+        </div>
+<include file="public@footer" />
+<script type="text/javascript" src="/style/js/morg.min.js" data-main="ListMain"></script>
+</body>
+</html>

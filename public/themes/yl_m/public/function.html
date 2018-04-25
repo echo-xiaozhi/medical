@@ -1,16 +1,13 @@
 <php>
-/*可以加多个方法哟！*/
-function _sp_helloworld(){
-	echo "hello ThinkCMF!";
+use think\Db;
+// 调取所有子分类id
+function get_children_all($id){
+	$data = $ids = DB::name('portal_category')->where("status=1 and ( id=$id OR path like '%-$id-%' )")->order('id asc')->column('id');
+	return $data;
 }
-
-function _sp_helloworld2(){
-	echo "hello ThinkCMF2!";
+//调取单页内容
+function get_page($id){
+	$data = Db::name('portal_post')->find($id);
+	return $data;
 }
-
-
-function _sp_helloworld3(){
-	echo "hello ThinkCMF3!";
-}
-
 </php>

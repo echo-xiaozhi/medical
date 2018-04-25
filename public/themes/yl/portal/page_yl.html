@@ -18,7 +18,7 @@
 <div id="sitecontent">
     <div class="npagePage Pageservice">
         <div id="banner">
-            <div style="background-image:url(/style/images/service.jpg);"></div>
+            <div style="background-image:url({:cmf_get_image_url($page.more.thumbnail)});"></div>
         </div>
         <div class="content">
             <div class="header">
@@ -52,8 +52,9 @@
                         </a>
                         <a href="{:cmf_url('portal/Page/index',['id'=>$tx.id])}" target="_blank" class="details">more<i class="fa fa-angle-right"></i></a>
                     </li>
-                    <li class="serviceitem"><a href="{:cmf_url('portal/Page/index',['id'=>$tx.id])}" target="_blank">
-                        <img src="{:cmf_get_image_url(json_decode($tx.more,true)['thumbnail'])}" width="320" height="120"/>
+                    <li class="serviceitem">
+                        <a href="{:cmf_url('portal/Page/index',['id'=>$tx.id])}" target="_blank">
+                            <img src="{:cmf_get_image_url(json_decode($tx.more,true)['thumbnail'])}" width="320" height="120"/>
                             <div>
                                 <p class="title">{$tx.post_title}</p>
                                 <p class="description">{$tx.post_excerpt}</p>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html class="effect">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>{$category.seo_title|default=$category.name}</title>
+    <meta name="keywords" content="{$category.seo_keywords}" />
+    <meta name="description" content="{$category.seo_description}" />
+    <include file="public@head" />
+</head>
+<body>
+<div id="sitecontent" class="transform">
+    <include file="public@nav" />
+    <div class="scrollView">
+        <div class="npagePage">
+            <div class="content">
+                <ul id="teamlist" class="plr10">
+                    <php>
+                        $page = [
+                            'list_rows' => 4,
+                            'prev' => '上一页',
+                            'next' => '下一页'
+                        ];
+                    </php>
+                    <portal:articles categoryIds="$category.id" order="post.published_time desc" page="$page">
+                        <li class="teamitem wow fadeIn">
+                            <a href="{:cmf_url('portal/Article/index',['id'=>$vo.id,'cid'=>$category.id])}">
+                                <div id="team_img"> <img src="{:cmf_get_image_url($vo.more.thumbnail)}" width="90" height="90" /> </div>
+                                <div class="teaminfo">
+                                    <div class="header">
+                                        <p class="title">{$vo.post_title}</p>
+                                        <p class="subtitle">{$vo.post_source}</p>
+                                    </div>
+                                    <p class="description">{$vo.post_excerpt}</p>
+                                </div>
+                            </a>
+                        </li>
+                    </portal:articles>
+                </ul>
+                <div class="pagess">
+                    <ul>
+                        <page />
+                    </ul>
+                </div>
+            </div>
+        </div>
+<include file="public@footer" />
+<script type="text/javascript" src="/style/js/morg.min.js" data-main="ListMain"></script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <div id="header">
-    <div class="content"><a href="/" id="logo"><img src="/style/picture/logo.png" height="40"/></a>
+    <div class="content"><a href="/" id="logo"><img src="{:cmf_get_image_url($site_info.site_logo)}" height="40"/></a>
         <php>
             $navMenuModel = new \app\admin\model\NavMenuModel();
             $menus = $navMenuModel->navMenusTreeArray('1',0);

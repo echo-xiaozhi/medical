@@ -11,21 +11,22 @@
     <meta name="description" content="{$article.post_excerpt}" />
     <include file="public@head" />
 </head>
+
 <body>
 <div id="sitecontent" class="transform">
     <include file="public@nav" />
     <div class="scrollView">
         <div class="npagePage">
-            <div class="content plr10">
-                <div id="newpost">
+            <div class="content">
+                <div id="projectpost">
                     <div class="header">
                         <p class="title">{$article.post_title}</p>
-                        <p class="subtitle"></p>
                     </div>
-                    <div class="postbody">
-                        <div class="fw postbody" id="gx">
-                            {$article.post_content}
-                        </div>
+                    <div class="clear"></div>
+                    <div class="postbody plr10" id="gx">
+                        {$article.post_content}
+                        {$article.post_excerpt}
+                        <p style="white-space: normal;"><a href="http://wpa.qq.com/msgrd?v=3&uin={$site_info.site_qq}&site=qq&menu=yes" target="_blank">预约挂号</a></p>
                     </div>
                 </div>
                 <div id="pages"></div>
