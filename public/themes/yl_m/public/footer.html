@@ -32,7 +32,14 @@
 </div>
 <script type="text/javascript">var YYConfig = {};</script>
 <script type="text/javascript" src="/style/js/jquery-1.11.3.min.js"></script>
-<script>jQuery.noConflict()</script>
+<script>
+    var j = jQuery.noConflict();
+    j("#nav a").each(function() {
+        if (j(this)[0].href == String(window.location)) {
+            j(this).parentsUntil("#nav>ul>li").addClass("active");
+        }
+    })
+</script>
 <script type="text/javascript" src="/style/js/mzepto.min.js"></script>
 <script type="text/javascript" src="/style/js/mzepto.bxslider.min.js"></script>
 <script type="text/javascript" src="/style/js/mwow.min.js"></script>
@@ -41,11 +48,6 @@
 <script type="text/javascript">
     $(function () {
         new WOW({scrollContainer: ".scrollView"}).init();
-        $("#nav a").each(function() {
-            if ($(this)[0].href == String(window.location)) {
-                $(this).parentsUntil("#nav>ul>li").addClass("active");
-            }
-        });
     })
 </script>
 {$site_info.site_analytics}

@@ -1,10 +1,10 @@
 {
-  "name": "simpleboot3",
-  "version": "1.0.2",
-  "demo_url": "http://demo.thinkcmf.com",
-  "author": "ThinkCMF",
+  "name": "医疗pc模板",
+  "version": "1.0.0",
+  "demo_url": "",
+  "author": "Jason&小智",
   "lang": "zh-cn",
-  "author_url": "http://www.thinkcmf.com",
-  "keywords": "ThinkCMF模板",
-  "description": "ThinkCMF默认模板"
+  "author_url": "",
+  "keywords": "XZEC模板",
+  "description": "XZEC默认模板"
 }
