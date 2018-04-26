@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2018 �?04 �?25 �?09:25
+-- 生成日期: 2018 �?04 �?26 �?03:11
 -- 服务器版本: 5.5.53
 -- PHP 版本: 7.0.12
 
@@ -32,18 +32,18 @@ CREATE TABLE IF NOT EXISTS `yl_admin_menu` (
   `type` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '菜单类型;1:有界面可访问菜单,2:无界面可访问菜单,0:只作为菜单',
   `status` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '状态;1:显示,0:不显示',
   `list_order` float NOT NULL DEFAULT '10000' COMMENT '排序',
-  `app` varchar(40) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '应用名',
-  `controller` varchar(30) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '控制器名',
-  `action` varchar(30) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '操作名称',
-  `param` varchar(50) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '额外参数',
+  `app` varchar(40) NOT NULL DEFAULT '' COMMENT '应用名',
+  `controller` varchar(30) NOT NULL DEFAULT '' COMMENT '控制器名',
+  `action` varchar(30) NOT NULL DEFAULT '' COMMENT '操作名称',
+  `param` varchar(50) NOT NULL DEFAULT '' COMMENT '额外参数',
   `name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '菜单名称',
-  `icon` varchar(20) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '菜单图标',
+  `icon` varchar(20) NOT NULL DEFAULT '' COMMENT '菜单图标',
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`id`),
   KEY `status` (`status`),
   KEY `parent_id` (`parent_id`),
   KEY `controller` (`controller`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COMMENT='后台菜单表' AUTO_INCREMENT=162 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='后台菜单表' AUTO_INCREMENT=162 ;
 
 --
 -- 转存表中的数据 `yl_admin_menu`
@@ -64,7 +64,7 @@ INSERT INTO `yl_admin_menu` (`id`, `parent_id`, `type`, `status`, `list_order`, 
 (12, 7, 2, 0, 10000, 'admin', 'Link', 'delete', '', '删除友情链接', '', '删除友情链接'),
 (13, 7, 2, 0, 10000, 'admin', 'Link', 'listOrder', '', '友情链接排序', '', '友情链接排序'),
 (14, 7, 2, 0, 10000, 'admin', 'Link', 'toggle', '', '友情链接显示隐藏', '', '友情链接显示隐藏'),
-(15, 6, 1, 1, 10, 'admin', 'Mailer', 'index', '', '邮箱配置', '', '邮箱配置'),
+(15, 6, 1, 0, 10, 'admin', 'Mailer', 'index', '', '邮箱配置', '', '邮箱配置'),
 (16, 15, 2, 0, 10000, 'admin', 'Mailer', 'indexPost', '', '邮箱配置提交保存', '', '邮箱配置提交保存'),
 (17, 15, 1, 0, 10000, 'admin', 'Mailer', 'template', '', '邮件模板', '', '邮件模板'),
 (18, 15, 2, 0, 10000, 'admin', 'Mailer', 'templatePost', '', '邮件模板提交', '', '邮件模板提交'),
@@ -110,7 +110,7 @@ INSERT INTO `yl_admin_menu` (`id`, `parent_id`, `type`, `status`, `list_order`, 
 (58, 0, 1, 0, 10000, 'admin', 'RecycleBin', 'index', '', '回收站', '', '回收站'),
 (59, 58, 2, 0, 10000, 'admin', 'RecycleBin', 'restore', '', '回收站还原', '', '回收站还原'),
 (60, 58, 2, 0, 10000, 'admin', 'RecycleBin', 'delete', '', '回收站彻底删除', '', '回收站彻底删除'),
-(61, 6, 1, 1, 10000, 'admin', 'Route', 'index', '', 'URL美化', '', 'URL规则管理'),
+(61, 6, 1, 0, 10000, 'admin', 'Route', 'index', '', 'URL美化', '', 'URL规则管理'),
 (62, 61, 1, 0, 10000, 'admin', 'Route', 'add', '', '添加路由规则', '', '添加路由规则'),
 (63, 61, 2, 0, 10000, 'admin', 'Route', 'addPost', '', '添加路由规则提交', '', '添加路由规则提交'),
 (64, 61, 1, 0, 10000, 'admin', 'Route', 'edit', '', '路由规则编辑', '', '路由规则编辑'),
@@ -201,13 +201,13 @@ INSERT INTO `yl_admin_menu` (`id`, `parent_id`, `type`, `status`, `list_order`, 
 (149, 145, 2, 0, 10000, 'portal', 'AdminTag', 'delete', '', '删除文章标签', '', '删除文章标签'),
 (150, 0, 1, 0, 10000, 'user', 'AdminAsset', 'index', '', '资源管理', 'file', '资源管理列表'),
 (151, 150, 2, 0, 10000, 'user', 'AdminAsset', 'delete', '', '删除文件', '', '删除文件'),
-(152, 109, 0, 1, 10000, 'user', 'AdminIndex', 'default1', '', '用户组', '', '用户组'),
+(152, 109, 0, 0, 10000, 'user', 'AdminIndex', 'default1', '', '用户组', '', '用户组'),
 (153, 152, 1, 1, 10000, 'user', 'AdminIndex', 'index', '', '本站用户', '', '本站用户'),
 (154, 153, 2, 0, 10000, 'user', 'AdminIndex', 'ban', '', '本站用户拉黑', '', '本站用户拉黑'),
 (155, 153, 2, 0, 10000, 'user', 'AdminIndex', 'cancelBan', '', '本站用户启用', '', '本站用户启用'),
 (156, 152, 1, 1, 10000, 'user', 'AdminOauth', 'index', '', '第三方用户', '', '第三方用户'),
 (157, 156, 2, 0, 10000, 'user', 'AdminOauth', 'delete', '', '删除第三方用户绑定', '', '删除第三方用户绑定'),
-(158, 6, 1, 1, 10000, 'user', 'AdminUserAction', 'index', '', '用户操作管理', '', '用户操作管理'),
+(158, 6, 1, 0, 10000, 'user', 'AdminUserAction', 'index', '', '用户操作管理', '', '用户操作管理'),
 (159, 158, 1, 0, 10000, 'user', 'AdminUserAction', 'edit', '', '编辑用户操作', '', '编辑用户操作'),
 (160, 158, 2, 0, 10000, 'user', 'AdminUserAction', 'editPost', '', '编辑用户操作提交', '', '编辑用户操作提交'),
 (161, 158, 1, 0, 10000, 'user', 'AdminUserAction', 'sync', '', '同步用户操作', '', '同步用户操作');
@@ -225,15 +225,15 @@ CREATE TABLE IF NOT EXISTS `yl_asset` (
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '上传时间',
   `status` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '状态;1:可用,0:不可用',
   `download_times` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '下载次数',
-  `file_key` varchar(64) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '文件惟一码',
+  `file_key` varchar(64) NOT NULL DEFAULT '' COMMENT '文件惟一码',
   `filename` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '文件名',
-  `file_path` varchar(100) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '文件路径,相对于upload目录,可以为url',
-  `file_md5` varchar(32) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '文件md5值',
-  `file_sha1` varchar(40) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  `suffix` varchar(10) NOT NULL DEFAULT '' COMMENT '文件后缀名,不包括点',
-  `more` text COMMENT '其它详细信息,JSON格式',
+  `file_path` varchar(100) NOT NULL DEFAULT '' COMMENT '文件路径,相对于upload目录,可以为url',
+  `file_md5` varchar(32) NOT NULL DEFAULT '' COMMENT '文件md5值',
+  `file_sha1` varchar(40) NOT NULL DEFAULT '',
+  `suffix` varchar(10) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '文件后缀名,不包括点',
+  `more` text CHARACTER SET utf8mb4 COMMENT '其它详细信息,JSON格式',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='资源表' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='资源表' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -260,16 +260,16 @@ CREATE TABLE IF NOT EXISTS `yl_auth_access` (
 CREATE TABLE IF NOT EXISTS `yl_auth_rule` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '规则id,自增主键',
   `status` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '是否有效(0:无效,1:有效)',
-  `app` varchar(15) NOT NULL COMMENT '规则所属module',
-  `type` varchar(30) NOT NULL DEFAULT '' COMMENT '权限规则分类，请加应用前缀,如admin_',
-  `name` varchar(100) NOT NULL DEFAULT '' COMMENT '规则唯一英文标识,全小写',
-  `param` varchar(100) NOT NULL DEFAULT '' COMMENT '额外url参数',
+  `app` varchar(15) CHARACTER SET utf8mb4 NOT NULL COMMENT '规则所属module',
+  `type` varchar(30) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '权限规则分类，请加应用前缀,如admin_',
+  `name` varchar(100) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '规则唯一英文标识,全小写',
+  `param` varchar(100) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '额外url参数',
   `title` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '规则描述',
-  `condition` varchar(200) NOT NULL DEFAULT '' COMMENT '规则附加条件',
+  `condition` varchar(200) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '规则附加条件',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`) USING BTREE,
   KEY `module` (`app`,`status`,`type`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COMMENT='权限规则表' AUTO_INCREMENT=162 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='权限规则表' AUTO_INCREMENT=162 ;
 
 --
 -- 转存表中的数据 `yl_auth_rule`
@@ -482,12 +482,12 @@ CREATE TABLE IF NOT EXISTS `yl_hook` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `type` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '钩子类型(1:系统钩子;2:应用钩子;3:模板钩子;4:后台模板钩子)',
   `once` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '是否只允许一个插件运行(0:多个;1:一个)',
-  `name` varchar(50) NOT NULL DEFAULT '' COMMENT '钩子名称',
-  `hook` varchar(50) NOT NULL DEFAULT '' COMMENT '钩子',
-  `app` varchar(15) NOT NULL DEFAULT '' COMMENT '应用名(只有应用钩子才用)',
-  `description` varchar(255) NOT NULL DEFAULT '' COMMENT '描述',
+  `name` varchar(50) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '钩子名称',
+  `hook` varchar(50) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '钩子',
+  `app` varchar(15) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '应用名(只有应用钩子才用)',
+  `description` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '描述',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COMMENT='系统钩子表' AUTO_INCREMENT=36 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='系统钩子表' AUTO_INCREMENT=36 ;
 
 --
 -- 转存表中的数据 `yl_hook`
@@ -540,10 +540,10 @@ CREATE TABLE IF NOT EXISTS `yl_hook_plugin` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `list_order` float NOT NULL DEFAULT '10000' COMMENT '排序',
   `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态(0:禁用,1:启用)',
-  `hook` varchar(50) NOT NULL DEFAULT '' COMMENT '钩子名',
-  `plugin` varchar(50) NOT NULL DEFAULT '' COMMENT '插件',
+  `hook` varchar(50) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '钩子名',
+  `plugin` varchar(50) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '插件',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COMMENT='系统钩子插件表' AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='系统钩子插件表' AUTO_INCREMENT=2 ;
 
 --
 -- 转存表中的数据 `yl_hook_plugin`
@@ -563,22 +563,15 @@ CREATE TABLE IF NOT EXISTS `yl_link` (
   `status` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '状态;1:显示;0:不显示',
   `rating` int(11) NOT NULL DEFAULT '0' COMMENT '友情链接评级',
   `list_order` float NOT NULL DEFAULT '10000' COMMENT '排序',
-  `description` varchar(255) NOT NULL DEFAULT '' COMMENT '友情链接描述',
-  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '友情链接地址',
+  `description` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '友情链接描述',
+  `url` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '友情链接地址',
   `name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '友情链接名称',
-  `image` varchar(100) NOT NULL DEFAULT '' COMMENT '友情链接图标',
-  `target` varchar(10) NOT NULL DEFAULT '' COMMENT '友情链接打开方式',
-  `rel` varchar(50) NOT NULL DEFAULT '' COMMENT '链接与网站的关系',
+  `image` varchar(100) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '友情链接图标',
+  `target` varchar(10) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '友情链接打开方式',
+  `rel` varchar(50) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '链接与网站的关系',
   PRIMARY KEY (`id`),
   KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COMMENT='友情链接表' AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `yl_link`
---
-
-INSERT INTO `yl_link` (`id`, `status`, `rating`, `list_order`, `description`, `url`, `name`, `image`, `target`, `rel`) VALUES
-(1, 1, 1, 8, 'thinkcmf官网', 'http://www.thinkcmf.com', 'ThinkCMF', '', '_blank', '');
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='友情链接表' AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -590,17 +583,16 @@ CREATE TABLE IF NOT EXISTS `yl_nav` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `is_main` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '是否为主导航;1:是;0:不是',
   `name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '导航位置名称',
-  `remark` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '备注',
+  `remark` varchar(255) NOT NULL DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COMMENT='前台导航位置表' AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='前台导航位置表' AUTO_INCREMENT=3 ;
 
 --
 -- 转存表中的数据 `yl_nav`
 --
 
 INSERT INTO `yl_nav` (`id`, `is_main`, `name`, `remark`) VALUES
-(1, 1, '主导航', '主导航'),
-(2, 0, '底部导航', '');
+(1, 1, '主导航', '主导航');
 
 -- --------------------------------------------------------
 
@@ -615,12 +607,12 @@ CREATE TABLE IF NOT EXISTS `yl_nav_menu` (
   `status` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '状态;1:显示;0:隐藏',
   `list_order` float NOT NULL DEFAULT '10000' COMMENT '排序',
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '菜单名称',
-  `target` varchar(10) NOT NULL DEFAULT '' COMMENT '打开方式',
-  `href` varchar(100) NOT NULL DEFAULT '' COMMENT '链接',
-  `icon` varchar(20) NOT NULL DEFAULT '' COMMENT '图标',
-  `path` varchar(255) NOT NULL DEFAULT '' COMMENT '层级关系',
+  `target` varchar(10) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '打开方式',
+  `href` varchar(100) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '链接',
+  `icon` varchar(20) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '图标',
+  `path` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '层级关系',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COMMENT='前台导航菜单表' AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='前台导航菜单表' AUTO_INCREMENT=16 ;
 
 --
 -- 转存表中的数据 `yl_nav_menu`
@@ -652,11 +644,11 @@ INSERT INTO `yl_nav_menu` (`id`, `nav_id`, `parent_id`, `status`, `list_order`, 
 CREATE TABLE IF NOT EXISTS `yl_option` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `autoload` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '是否自动加载;1:自动加载;0:不自动加载',
-  `option_name` varchar(64) NOT NULL DEFAULT '' COMMENT '配置名',
+  `option_name` varchar(64) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '配置名',
   `option_value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci COMMENT '配置值',
   PRIMARY KEY (`id`),
   UNIQUE KEY `option_name` (`option_name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='全站配置表' AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='全站配置表' AUTO_INCREMENT=5 ;
 
 --
 -- 转存表中的数据 `yl_option`
@@ -680,17 +672,17 @@ CREATE TABLE IF NOT EXISTS `yl_plugin` (
   `has_admin` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '是否有后台管理,0:没有;1:有',
   `status` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '状态;1:开启;0:禁用',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '插件安装时间',
-  `name` varchar(50) NOT NULL DEFAULT '' COMMENT '插件标识名,英文字母(惟一)',
+  `name` varchar(50) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '插件标识名,英文字母(惟一)',
   `title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '插件名称',
-  `demo_url` varchar(50) NOT NULL DEFAULT '' COMMENT '演示地址，带协议',
-  `hooks` varchar(255) NOT NULL DEFAULT '' COMMENT '实现的钩子;以“,”分隔',
+  `demo_url` varchar(50) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '演示地址，带协议',
+  `hooks` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '实现的钩子;以“,”分隔',
   `author` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '插件作者',
-  `author_url` varchar(50) NOT NULL DEFAULT '' COMMENT '作者网站链接',
-  `version` varchar(20) NOT NULL DEFAULT '' COMMENT '插件版本号',
-  `description` varchar(255) NOT NULL COMMENT '插件描述',
-  `config` text COMMENT '插件配置',
+  `author_url` varchar(50) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '作者网站链接',
+  `version` varchar(20) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '插件版本号',
+  `description` varchar(255) CHARACTER SET utf8mb4 NOT NULL COMMENT '插件描述',
+  `config` text CHARACTER SET utf8mb4 COMMENT '插件配置',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COMMENT='插件表' AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='插件表' AUTO_INCREMENT=2 ;
 
 --
 -- 转存表中的数据 `yl_plugin`
@@ -713,16 +705,16 @@ CREATE TABLE IF NOT EXISTS `yl_portal_category` (
   `delete_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   `list_order` float NOT NULL DEFAULT '10000' COMMENT '排序',
   `name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '分类名称',
-  `description` varchar(255) NOT NULL DEFAULT '' COMMENT '分类描述',
-  `path` varchar(255) NOT NULL DEFAULT '' COMMENT '分类层级关系路径',
-  `seo_title` varchar(100) NOT NULL DEFAULT '',
-  `seo_keywords` varchar(255) NOT NULL DEFAULT '',
-  `seo_description` varchar(255) NOT NULL DEFAULT '',
-  `list_tpl` varchar(50) NOT NULL DEFAULT '' COMMENT '分类列表模板',
-  `one_tpl` varchar(50) NOT NULL DEFAULT '' COMMENT '分类文章页模板',
-  `more` text COMMENT '扩展属性',
+  `description` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '分类描述',
+  `path` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '分类层级关系路径',
+  `seo_title` varchar(100) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
+  `seo_keywords` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
+  `seo_description` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
+  `list_tpl` varchar(50) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '分类列表模板',
+  `one_tpl` varchar(50) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '分类文章页模板',
+  `more` text CHARACTER SET utf8mb4 COMMENT '扩展属性',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COMMENT='portal应用 文章分类表' AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='portal应用 文章分类表' AUTO_INCREMENT=10 ;
 
 --
 -- 转存表中的数据 `yl_portal_category`
@@ -760,10 +752,6 @@ CREATE TABLE IF NOT EXISTS `yl_portal_category_post` (
 --
 
 INSERT INTO `yl_portal_category_post` (`id`, `post_id`, `category_id`, `list_order`, `status`) VALUES
-(1, 9, 4, 10000, 0),
-(2, 9, 6, 10000, 0),
-(3, 10, 5, 10000, 0),
-(4, 10, 7, 10000, 0),
 (5, 11, 1, 10000, 1),
 (6, 11, 5, 10000, 1),
 (7, 11, 7, 10000, 1),
@@ -798,18 +786,18 @@ CREATE TABLE IF NOT EXISTS `yl_portal_post` (
   `published_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '发布时间',
   `delete_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
   `post_title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'post标题',
-  `post_keywords` varchar(150) NOT NULL DEFAULT '' COMMENT 'seo keywords',
-  `post_excerpt` varchar(500) NOT NULL DEFAULT '' COMMENT 'post摘要',
-  `post_source` varchar(150) NOT NULL DEFAULT '' COMMENT '转载文章的来源',
-  `post_content` text COMMENT '文章内容',
-  `post_content_filtered` text COMMENT '处理过的文章内容',
-  `more` text COMMENT '扩展属性,如缩略图;格式为json',
+  `post_keywords` varchar(150) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'seo keywords',
+  `post_excerpt` varchar(500) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'post摘要',
+  `post_source` varchar(150) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '转载文章的来源',
+  `post_content` text CHARACTER SET utf8mb4 COMMENT '文章内容',
+  `post_content_filtered` text CHARACTER SET utf8mb4 COMMENT '处理过的文章内容',
+  `more` text CHARACTER SET utf8mb4 COMMENT '扩展属性,如缩略图;格式为json',
   PRIMARY KEY (`id`),
   KEY `type_status_date` (`post_type`,`post_status`,`create_time`,`id`),
   KEY `parent_id` (`parent_id`),
   KEY `user_id` (`user_id`),
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='portal应用 文章表' AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='portal应用 文章表' AUTO_INCREMENT=17 ;
 
 --
 -- 转存表中的数据 `yl_portal_post`
@@ -824,8 +812,6 @@ INSERT INTO `yl_portal_post` (`id`, `parent_id`, `post_type`, `post_format`, `us
 (6, 0, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1524574128, 1524617960, 1524574080, 0, '新技术针疗法', '', '至于新三板，陈阳提到：我认同新三板今天所有的问题，在今天的纳斯达克依然存在。其实不足以讲这件事情的本质...', '', '\n&lt;p style=&quot;white-space: normal;&quot;&gt;至于新三板，陈阳提到：&amp;amp;ldquo;我认同新三板今天所有的问题，在今天的纳斯达克依然存在。其实不足以讲这件事情的本质是什么，这件事情在中国现在很多产业迭代中起到什么作用。&amp;amp;rdquo;土豆于本月中旬上线的新版中首次上线；其次，双方将成立一家合资公司以独立品牌开拓游戏发行业务。&lt;/p&gt;\n&lt;p style=&quot;white-space: normal;&quot;&gt; &lt;/p&gt;\n&lt;p style=&quot;white-space: normal;&quot;&gt;但问题是，中国去年更换的手机大概有2亿多部，以机构形式回收的手机只有1%左右；总计3-4亿部被淘汰的手机，大部分都还散落在消费者手里。机构回收手机这件事情用户完全没有概念。首先是优酷会在平台上开辟一块全新的游戏中心，由着迷进行运营，将在优酷土豆于本月中旬上线的新版中首次上线；其次，双方将成立一家合资公司以独立品牌开拓游戏发行业务。&lt;/p&gt;\n&lt;p&gt;&lt;br&gt;&lt;/p&gt;\n', NULL, '{"thumbnail":"\\/style\\/picture\\/1-1f5041f041314.png","template":"page"}'),
 (7, 0, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1524574153, 1524618098, 1524574140, 0, '特色门诊', '', 'iOS/Android APP交互设计媒体的核心价值在于其内容，而在当今为内容付费的成功案例都稀缺的情况下，用户是绝对不会...', '', '\n&lt;p&gt;   \r\n	iOS/Android APP交互设计媒体的核心价值在于其内容，而在当今为内容付费的成功案例都稀缺的情况下，用户是绝对不会为这类App的下载付费，而开发一个Native App需要花费较高的成本 ...&lt;/p&gt;\n&lt;p&gt;   \r\n	 &lt;/p&gt;\n&lt;p&gt;   \r\n	打破传统模板模式，让所有企业能够在最短时间内拥有一套高端网站，让WEB成为一种潮流！打破传统模板模式，让所有企业能够在最短时间内拥有一套 高端网站，让WEB成为一种潮流！&lt;/p&gt;\n&lt;p&gt;   \r\n	 &lt;/p&gt;\n&lt;p&gt;&lt;img alt=&quot;&quot; src=&quot;/style/images/jianjie.jpg&quot; style=&quot;width: 800px; height: 533px;&quot;&gt;&lt;/p&gt;\n&lt;p&gt;   \r\n	 &lt;/p&gt;\n&lt;p&gt;   \r\n	Web APP交互设计 视觉设计 功能定制开发 微信公众平台，基于HTML5的手机站 / 用户动作简单（无非是阅读、收藏、评论这几样核心功能）、注重内容呈现、无需做太多的视觉效果、面临最多的跨平台问题 ...&lt;/p&gt;\n', NULL, '{"thumbnail":"\\/style\\/picture\\/1-1f5041ap10-l.png","template":"page"}'),
 (8, 0, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1524574180, 1524618138, 1524574140, 0, '特需医疗', '', '01. 泛游戏兴趣聚合平台着迷将正式宣布其已完成 C 轮融资，由优酷土豆集团领投、掌趣科技跟投，具体的融资数额并...', '', '\n&lt;p&gt;\r\n	01.  泛游戏兴趣聚合平台&amp;amp;ldquo;着迷&amp;amp;rdquo;将正式宣布其已完成 C 轮融资，由优酷土豆集团领投、掌趣科技跟投，具体的融资数额并未公布。另外，着迷向36氪透露，计划在年底挂牌新三板，目前已经和一些券商等合作方在做前期工作。&lt;/p&gt;\n&lt;p&gt;\r\n	 &lt;/p&gt;\n&lt;p&gt;\r\n	02.  优土和着迷在战略上的资本合作，体现在业务层面主要有两块。首先是优酷会在平台上开辟一块全新的游戏中心，由着迷进行运营，将在优酷土豆于本月中旬上线的新版中首次上线；其次，双方将成立一家合资公司，以独立品牌开拓游戏发行业务。&lt;/p&gt;\n&lt;p&gt;\r\n	 &lt;/p&gt;\n&lt;p&gt;\r\n	碎片化始终是无法避免的趋势&lt;/p&gt;\n&lt;p&gt;\r\n	 &lt;/p&gt;\n&lt;p&gt;\r\n	至于新三板，陈阳提到：&amp;amp;ldquo;我认同新三板今天所有的问题，在今天的纳斯达克依然存在。其实不足以讲这件事情的本质是什么，这件事情在中国现在很多产业迭代中起到什么作用。&amp;amp;rdquo;土豆于本月中旬上线的新版中首次上线；其次，双方将成立一家合资公司以独立品牌开拓游戏发行业务。&lt;/p&gt;\n&lt;p&gt;\r\n	 &lt;/p&gt;\n&lt;p&gt;\r\n	但 问题是，中国去年更换的手机大概有2亿多部，以机构形式回收的手机只有1%左右；总计3-4亿部被淘汰的手机，大部分都还散落在消费者手里。机构回收手机 这件事情用户完全没有概念。首先是优酷会在平台上开辟一块全新的游戏中心，由着迷进行运营，将在优酷土豆于本月中旬上线的新版中首次上线；其次，双方将成 立一家合资公司以独立品牌开拓游戏发行业务。&lt;/p&gt;\n', NULL, '{"thumbnail":"\\/style\\/picture\\/1-1f5041aa20-l.png","template":"page"}'),
-(9, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1524578421, 1524578421, 1524578401, 1524580127, '医疗特色', '', '', '', '&lt;p&gt;搞的撒反对&lt;br&gt;&lt;/p&gt;', NULL, '{"thumbnail":"\\/style\\/picture\\/1-1f5041ui60-l.jpg","template":""}'),
-(10, 0, 1, 1, 1, 1, 1, 0, 0, 2, 0, 0, 1524578437, 1524578437, 1524578424, 1524580127, '饭vgbdsgfds', '', '', '', '&lt;p&gt;很过分的事&lt;/p&gt;', NULL, '{"thumbnail":"\\/style\\/picture\\/1-1f5041ui60-l.jpg","template":""}'),
 (11, 0, 1, 1, 1, 1, 1, 0, 0, 28, 0, 0, 1524578453, 1524579215, 1524578400, 0, '高档服饰股份的', '', '本科技术力量和整体水平在全国核医学科中处于领先地位，尤其在呼吸核医学方面有独特的优势。 目前开展的临床诊疗项目包括', '', '&lt;p&gt;&lt;img src=&quot;/style/picture/1-1f5041u910612.jpg&quot;&gt;&lt;/p&gt;', NULL, '{"thumbnail":"\\/style\\/picture\\/1-1f5041ui60-l.jpg","template":""}'),
 (12, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1524618959, 1524618959, 1524618854, 0, '寡人', '', '新西兰GOUW设计师平台收录 - 中国网页设计联盟2010-11中国十佳网页 - 世界权威电子设计杂志 NEWWEBPICK推荐设计师及网站推荐 - 案例被收录NEWWEBPICK电子杂志 （第29期） - 欧美css设计奖项...', '主任医师/博士研究生导师', NULL, NULL, '{"thumbnail":"\\/style\\/picture\\/1-1f5041z0100-l.png","template":""}'),
 (13, 0, 1, 1, 1, 1, 1, 0, 0, 4, 0, 0, 1524619005, 1524619005, 1524618963, 0, '乔安娜kustra', '', '7年互联网经验，曾服务于搜狐火炬传递、北京建筑设计研究院、日本电通、影时尚、宝迪集团、牛扒工厂、悠怡蓝海、富士达电动车、南中圣淇、伟德福思、安陆恩彼、WEB官网、WEB平台...', '主任医师/教授', NULL, NULL, '{"thumbnail":"\\/style\\/picture\\/1-1f5041301570-l.png","template":""}'),
@@ -846,7 +832,7 @@ CREATE TABLE IF NOT EXISTS `yl_portal_tag` (
   `post_count` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '标签文章数',
   `name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '标签名称',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='portal应用 文章标签表' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='portal应用 文章标签表' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -873,19 +859,11 @@ CREATE TABLE IF NOT EXISTS `yl_recycle_bin` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `object_id` int(11) DEFAULT '0' COMMENT '删除内容 id',
   `create_time` int(10) unsigned DEFAULT '0' COMMENT '创建时间',
-  `table_name` varchar(60) DEFAULT '' COMMENT '删除内容所在表名',
-  `name` varchar(255) DEFAULT '' COMMENT '删除内容名称',
+  `table_name` varchar(60) CHARACTER SET utf8mb4 DEFAULT '' COMMENT '删除内容所在表名',
+  `name` varchar(255) CHARACTER SET utf8mb4 DEFAULT '' COMMENT '删除内容名称',
   `user_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '用户id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COMMENT=' 回收站' AUTO_INCREMENT=3 ;
-
---
--- 转存表中的数据 `yl_recycle_bin`
---
-
-INSERT INTO `yl_recycle_bin` (`id`, `object_id`, `create_time`, `table_name`, `name`, `user_id`) VALUES
-(1, 9, 1524580127, 'portal_post', '医疗特色', 1),
-(2, 10, 1524580127, 'portal_post', '饭vgbdsgfds', 1);
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT=' 回收站' AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -901,11 +879,11 @@ CREATE TABLE IF NOT EXISTS `yl_role` (
   `update_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   `list_order` float NOT NULL DEFAULT '0' COMMENT '排序',
   `name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '角色名称',
-  `remark` varchar(255) NOT NULL DEFAULT '' COMMENT '备注',
+  `remark` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`id`),
   KEY `parent_id` (`parent_id`),
   KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COMMENT='角色表' AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='角色表' AUTO_INCREMENT=3 ;
 
 --
 -- 转存表中的数据 `yl_role`
@@ -941,10 +919,10 @@ CREATE TABLE IF NOT EXISTS `yl_route` (
   `list_order` float NOT NULL DEFAULT '10000' COMMENT '排序',
   `status` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态;1:启用,0:不启用',
   `type` tinyint(4) NOT NULL DEFAULT '1' COMMENT 'URL规则类型;1:用户自定义;2:别名添加',
-  `full_url` varchar(255) NOT NULL DEFAULT '' COMMENT '完整url',
-  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '实际显示的url',
+  `full_url` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '完整url',
+  `url` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '实际显示的url',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COMMENT='url路由表' AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='url路由表' AUTO_INCREMENT=27 ;
 
 --
 -- 转存表中的数据 `yl_route`
@@ -988,10 +966,10 @@ CREATE TABLE IF NOT EXISTS `yl_slide` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '状态,1:显示,0不显示',
   `delete_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
-  `name` varchar(50) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '幻灯片分类',
-  `remark` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '分类备注',
+  `name` varchar(50) NOT NULL DEFAULT '' COMMENT '幻灯片分类',
+  `remark` varchar(255) NOT NULL DEFAULT '' COMMENT '分类备注',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COMMENT='幻灯片表' AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='幻灯片表' AUTO_INCREMENT=2 ;
 
 --
 -- 转存表中的数据 `yl_slide`
@@ -1011,16 +989,16 @@ CREATE TABLE IF NOT EXISTS `yl_slide_item` (
   `slide_id` int(11) NOT NULL DEFAULT '0' COMMENT '幻灯片id',
   `status` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '状态,1:显示;0:隐藏',
   `list_order` float NOT NULL DEFAULT '10000' COMMENT '排序',
-  `title` varchar(50) NOT NULL DEFAULT '' COMMENT '幻灯片名称',
-  `image` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '幻灯片图片',
-  `url` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '幻灯片链接',
-  `target` varchar(10) NOT NULL DEFAULT '' COMMENT '友情链接打开方式',
-  `description` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT '幻灯片描述',
-  `content` text CHARACTER SET utf8 COMMENT '幻灯片内容',
-  `more` text COMMENT '链接打开方式',
+  `title` varchar(50) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '幻灯片名称',
+  `image` varchar(255) NOT NULL DEFAULT '' COMMENT '幻灯片图片',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '幻灯片链接',
+  `target` varchar(10) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '友情链接打开方式',
+  `description` varchar(255) NOT NULL COMMENT '幻灯片描述',
+  `content` text COMMENT '幻灯片内容',
+  `more` text CHARACTER SET utf8mb4 COMMENT '链接打开方式',
   PRIMARY KEY (`id`),
   KEY `slide_id` (`slide_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COMMENT='幻灯片子项表' AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='幻灯片子项表' AUTO_INCREMENT=3 ;
 
 --
 -- 转存表中的数据 `yl_slide_item`
@@ -1061,8 +1039,8 @@ CREATE TABLE IF NOT EXISTS `yl_theme` (
 
 INSERT INTO `yl_theme` (`id`, `create_time`, `update_time`, `status`, `is_compiled`, `theme`, `name`, `version`, `demo_url`, `thumbnail`, `author`, `author_url`, `lang`, `keywords`, `description`) VALUES
 (1, 0, 0, 0, 0, 'simpleboot3', 'simpleboot3', '1.0.2', 'http://demo.thinkcmf.com', '', 'ThinkCMF', 'http://www.thinkcmf.com', 'zh-cn', 'ThinkCMF模板', 'ThinkCMF默认模板'),
-(2, 0, 0, 0, 0, 'yl', 'simpleboot3', '1.0.2', 'http://demo.thinkcmf.com', '', 'ThinkCMF', 'http://www.thinkcmf.com', 'zh-cn', 'ThinkCMF模板', 'ThinkCMF默认模板'),
-(3, 0, 0, 0, 0, 'yl_m', 'simpleboot3', '1.0.2', 'http://demo.thinkcmf.com', '', 'ThinkCMF', 'http://www.thinkcmf.com', 'zh-cn', 'ThinkCMF模板', 'ThinkCMF默认模板');
+(2, 0, 0, 0, 0, 'yl', '医疗pc模板', '1.0.0', '', '', 'Jason&小智', '', 'zh-cn', 'XZEC模板', 'XZEC默认模板'),
+(3, 0, 0, 0, 0, 'yl_m', '医疗wap模板', '1.0.0', '', '', 'Jason&小智', '', 'zh-cn', 'XZEC模板', 'XZEC手机默认模板');
 
 -- --------------------------------------------------------
 
@@ -1140,16 +1118,16 @@ CREATE TABLE IF NOT EXISTS `yl_third_party_user` (
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '绑定时间',
   `login_times` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '登录次数',
   `status` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '状态;1:正常;0:禁用',
-  `nickname` varchar(50) NOT NULL DEFAULT '' COMMENT '用户昵称',
-  `third_party` varchar(20) NOT NULL DEFAULT '' COMMENT '第三方惟一码',
-  `app_id` varchar(64) NOT NULL DEFAULT '' COMMENT '第三方应用 id',
-  `last_login_ip` varchar(15) NOT NULL DEFAULT '' COMMENT '最后登录ip',
-  `access_token` varchar(512) NOT NULL DEFAULT '' COMMENT '第三方授权码',
-  `openid` varchar(40) NOT NULL DEFAULT '' COMMENT '第三方用户id',
-  `union_id` varchar(64) NOT NULL DEFAULT '' COMMENT '第三方用户多个产品中的惟一 id,(如:微信平台)',
-  `more` text COMMENT '扩展信息',
+  `nickname` varchar(50) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '用户昵称',
+  `third_party` varchar(20) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '第三方惟一码',
+  `app_id` varchar(64) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '第三方应用 id',
+  `last_login_ip` varchar(15) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '最后登录ip',
+  `access_token` varchar(512) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '第三方授权码',
+  `openid` varchar(40) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '第三方用户id',
+  `union_id` varchar(64) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '第三方用户多个产品中的惟一 id,(如:微信平台)',
+  `more` text CHARACTER SET utf8mb4 COMMENT '扩展信息',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='第三方用户表' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='第三方用户表' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1169,27 +1147,27 @@ CREATE TABLE IF NOT EXISTS `yl_user` (
   `create_time` int(11) NOT NULL DEFAULT '0' COMMENT '注册时间',
   `user_status` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '用户状态;0:禁用,1:正常,2:未验证',
   `user_login` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '用户名',
-  `user_pass` varchar(64) NOT NULL DEFAULT '' COMMENT '登录密码;cmf_password加密',
+  `user_pass` varchar(64) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '登录密码;cmf_password加密',
   `user_nickname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '用户昵称',
-  `user_email` varchar(100) NOT NULL DEFAULT '' COMMENT '用户登录邮箱',
-  `user_url` varchar(100) NOT NULL DEFAULT '' COMMENT '用户个人网址',
-  `avatar` varchar(255) NOT NULL DEFAULT '' COMMENT '用户头像',
-  `signature` varchar(255) NOT NULL DEFAULT '' COMMENT '个性签名',
-  `last_login_ip` varchar(15) NOT NULL DEFAULT '' COMMENT '最后登录ip',
-  `user_activation_key` varchar(60) NOT NULL DEFAULT '' COMMENT '激活码',
-  `mobile` varchar(20) NOT NULL DEFAULT '' COMMENT '用户手机号',
-  `more` text COMMENT '扩展属性',
+  `user_email` varchar(100) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '用户登录邮箱',
+  `user_url` varchar(100) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '用户个人网址',
+  `avatar` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '用户头像',
+  `signature` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '个性签名',
+  `last_login_ip` varchar(15) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '最后登录ip',
+  `user_activation_key` varchar(60) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '激活码',
+  `mobile` varchar(20) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '用户手机号',
+  `more` text CHARACTER SET utf8mb4 COMMENT '扩展属性',
   PRIMARY KEY (`id`),
   KEY `user_login` (`user_login`),
   KEY `user_nickname` (`user_nickname`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COMMENT='用户表' AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='用户表' AUTO_INCREMENT=2 ;
 
 --
 -- 转存表中的数据 `yl_user`
 --
 
 INSERT INTO `yl_user` (`id`, `user_type`, `sex`, `birthday`, `last_login_time`, `score`, `coin`, `balance`, `create_time`, `user_status`, `user_login`, `user_pass`, `user_nickname`, `user_email`, `user_url`, `avatar`, `signature`, `last_login_ip`, `user_activation_key`, `mobile`, `more`) VALUES
-(1, 1, 0, 0, 1524617878, 0, 0, '0.00', 1524474811, 1, 'admin', '###a569348695a59bad6babe8dc4b46f109', 'admin', '164466159@qq.com', '', '', '', '127.0.0.1', '', '', NULL);
+(1, 1, 0, 0, 1524709480, 0, 0, '0.00', 1524474811, 1, 'admin', '###a569348695a59bad6babe8dc4b46f109', 'admin', '164466159@qq.com', '', '', '', '127.0.0.1', '', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -1204,12 +1182,12 @@ CREATE TABLE IF NOT EXISTS `yl_user_action` (
   `reward_number` int(11) NOT NULL DEFAULT '0' COMMENT '奖励次数',
   `cycle_type` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '周期类型;0:不限;1:按天;2:按小时;3:永久',
   `cycle_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '周期时间值',
-  `name` varchar(50) NOT NULL DEFAULT '' COMMENT '用户操作名称',
-  `action` varchar(50) NOT NULL DEFAULT '' COMMENT '用户操作名称',
-  `app` varchar(50) NOT NULL DEFAULT '' COMMENT '操作所在应用名或插件名等',
-  `url` text COMMENT '执行操作的url',
+  `name` varchar(50) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '用户操作名称',
+  `action` varchar(50) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '用户操作名称',
+  `app` varchar(50) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '操作所在应用名或插件名等',
+  `url` text CHARACTER SET utf8mb4 COMMENT '执行操作的url',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COMMENT='用户操作表' AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='用户操作表' AUTO_INCREMENT=2 ;
 
 --
 -- 转存表中的数据 `yl_user_action`
@@ -1229,13 +1207,13 @@ CREATE TABLE IF NOT EXISTS `yl_user_action_log` (
   `user_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '用户id',
   `count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '访问次数',
   `last_visit_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '最后访问时间',
-  `object` varchar(100) NOT NULL DEFAULT '' COMMENT '访问对象的id,格式:不带前缀的表名+id;如posts1表示xx_posts表里id为1的记录',
-  `action` varchar(50) NOT NULL DEFAULT '' COMMENT '操作名称;格式:应用名+控制器+操作名,也可自己定义格式只要不发生冲突且惟一;',
-  `ip` varchar(15) NOT NULL DEFAULT '' COMMENT '用户ip',
+  `object` varchar(100) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '访问对象的id,格式:不带前缀的表名+id;如posts1表示xx_posts表里id为1的记录',
+  `action` varchar(50) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '操作名称;格式:应用名+控制器+操作名,也可自己定义格式只要不发生冲突且惟一;',
+  `ip` varchar(15) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '用户ip',
   PRIMARY KEY (`id`),
   KEY `user_object_action` (`user_id`,`object`,`action`),
   KEY `user_object_action_ip` (`user_id`,`object`,`action`,`ip`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='访问记录表' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='访问记录表' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1263,15 +1241,15 @@ CREATE TABLE IF NOT EXISTS `yl_user_balance_log` (
 CREATE TABLE IF NOT EXISTS `yl_user_favorite` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '用户 id',
-  `title` varchar(100) NOT NULL DEFAULT '' COMMENT '收藏内容的标题',
-  `url` varchar(255) CHARACTER SET utf8 DEFAULT '' COMMENT '收藏内容的原文地址，不带域名',
-  `description` varchar(500) CHARACTER SET utf8 DEFAULT '' COMMENT '收藏内容的描述',
-  `table_name` varchar(64) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '收藏实体以前所在表,不带前缀',
+  `title` varchar(100) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '收藏内容的标题',
+  `url` varchar(255) DEFAULT '' COMMENT '收藏内容的原文地址，不带域名',
+  `description` varchar(500) DEFAULT '' COMMENT '收藏内容的描述',
+  `table_name` varchar(64) NOT NULL DEFAULT '' COMMENT '收藏实体以前所在表,不带前缀',
   `object_id` int(10) unsigned DEFAULT '0' COMMENT '收藏内容原来的主键id',
   `create_time` int(10) unsigned DEFAULT '0' COMMENT '收藏时间',
   PRIMARY KEY (`id`),
   KEY `uid` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户收藏表' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户收藏表' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1284,10 +1262,10 @@ CREATE TABLE IF NOT EXISTS `yl_user_login_attempt` (
   `login_attempts` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '尝试次数',
   `attempt_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '尝试登录时间',
   `locked_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '锁定时间',
-  `ip` varchar(15) NOT NULL DEFAULT '' COMMENT '用户 ip',
-  `account` varchar(100) NOT NULL DEFAULT '' COMMENT '用户账号,手机号,邮箱或用户名',
+  `ip` varchar(15) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '用户 ip',
+  `account` varchar(100) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '用户账号,手机号,邮箱或用户名',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='用户登录尝试表' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='用户登录尝试表' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1299,11 +1277,11 @@ CREATE TABLE IF NOT EXISTS `yl_user_score_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户 id',
   `create_time` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
-  `action` varchar(50) NOT NULL DEFAULT '' COMMENT '用户操作名称',
+  `action` varchar(50) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '用户操作名称',
   `score` int(11) NOT NULL DEFAULT '0' COMMENT '更改积分，可以为负',
   `coin` int(11) NOT NULL DEFAULT '0' COMMENT '更改金币，可以为负',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户操作积分等奖励日志表' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户操作积分等奖励日志表' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1316,10 +1294,10 @@ CREATE TABLE IF NOT EXISTS `yl_user_token` (
   `user_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户id',
   `expire_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT ' 过期时间',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
-  `token` varchar(64) NOT NULL DEFAULT '' COMMENT 'token',
-  `device_type` varchar(10) NOT NULL DEFAULT '' COMMENT '设备类型;mobile,android,iphone,ipad,web,pc,mac,wxapp',
+  `token` varchar(64) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'token',
+  `device_type` varchar(10) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '设备类型;mobile,android,iphone,ipad,web,pc,mac,wxapp',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COMMENT='用户客户端登录 token 表' AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='用户客户端登录 token 表' AUTO_INCREMENT=2 ;
 
 --
 -- 转存表中的数据 `yl_user_token`
@@ -1339,10 +1317,10 @@ CREATE TABLE IF NOT EXISTS `yl_verification_code` (
   `count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '当天已经发送成功的次数',
   `send_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '最后发送成功时间',
   `expire_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '验证码过期时间',
-  `code` varchar(8) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '最后发送成功的验证码',
-  `account` varchar(100) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '手机号或者邮箱',
+  `code` varchar(8) NOT NULL DEFAULT '' COMMENT '最后发送成功的验证码',
+  `account` varchar(100) NOT NULL DEFAULT '' COMMENT '手机号或者邮箱',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='手机邮箱数字验证码表' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='手机邮箱数字验证码表' AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
